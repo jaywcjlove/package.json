@@ -313,24 +313,24 @@ The repository is the location where the actual code for your package lives.
 
 对于以下脚本，`npm` 支持 `package.json` 文件的 `scripts` 默认命令字段：
 
-- `prepublish`: Run BEFORE the package is packed and published, as well as on local npm install without any arguments. (See below)
-- `prepare`: Run both BEFORE the package is packed and published, and on local npm install without any arguments (See below). This is run AFTER prepublish, but BEFORE prepublishOnly.
-- `prepublishOnly`: Run BEFORE the package is prepared and packed, ONLY on npm publish. (See below.)
-- `prepack`: run BEFORE a tarball is packed (on npm pack, npm publish, and when installing git dependencies)
-- `postpack`: Run AFTER the tarball has been generated and moved to its final destination.
-- `publish`, `postpublish`: Run AFTER the package is published.
-- `preinstall`: Run BEFORE the package is installed
-- `install`, `postinstall`: Run AFTER the package is installed.
-- `preuninstall`, `uninstall`: Run BEFORE the package is uninstalled.
-- `postuninstall`: Run AFTER the package is uninstalled.
-- `preversion`: Run BEFORE bumping the package version.
-- `version`: Run AFTER bumping the package version, but BEFORE commit.
-- `postversion`: Run AFTER bumping the package version, and AFTER commit.
-- `pretest`, `test`, `posttest`: Run by the npm test command.
-- `prestop`, `stop`, `poststop`: Run by the npm stop command.
-- `prestart`, `start`, `poststart`: Run by the npm start command.
-- `prerestart`, `restart`, `postrestart`: Run by the npm restart command. Note: npm restart will run the stop and start scripts if no restart script is provided.
-- `preshrinkwrap`, `shrinkwrap`, `postshrinkwrap`: Run by the npm shrinkwrap command.
+- `prepublish`: 在打包并发布包之前运行，以及在没有任何参数的本地 `npm` 安装之前运行。 （见下文）
+- `prepare`: 在打包和发布包之前运行，在没有任何参数的本地 `npm install` 上运行，以及安装 git 依赖项时（见下文）。 这是在 `preublish` 之后运行，但是在 `preublishOnly` 之前运行。
+- `prepublishOnly`: 在包准备和打包之前运行，仅限于npm发布。 （见下文。）
+- `prepack`: 在打包 `tarball` 之前运行（在 `npm pack`，`npm publish`，以及安装 git 依赖项时）
+- `postpack`: 在生成 `tarball` 之后运行并移动到其最终目标。
+- `publish`, `postpublish`: 在包发布后运行。
+- `preinstall`: 在安装软件包之前运行。
+- `install`, `postinstall`: 安装包后运行。
+- `preuninstall`, `uninstall`: 在卸载软件包之前运行。
+- `postuninstall`: 在卸载软件包之后运行。
+- `preversion`: 在改变包版本之前运行。
+- `version`: 改变包版本后运行，但提交之前。
+- `postversion`: 改变包版本后运行，然后提交。
+- `pretest`, `test`, `posttest`: 由 `npm test` 命令运行。
+- `prestop`, `stop`, `poststop`: 由 `npm stop` 命令运行。
+- `prestart`, `start`, `poststart`: 由 `npm start` 命令运行。 
+- `prerestart`, `restart`, `postrestart`: 由 `npm restart` 命令运行。 注意：如果没有提供重启脚本，`npm restart` 将运行 `stop` 和`start` 脚本。
+- `preshrinkwrap`, `shrinkwrap`, `postshrinkwrap`: 由 `npm shrinkwrap` 命令运行。
 
 参考文档：[npm docs](https://docs.npmjs.com/misc/scripts).
 
@@ -476,14 +476,14 @@ The repository is the location where the actual code for your package lives.
 ```json
 {
   "publishConfig": {
-    ...
+    "registry": "https://registry.npm.taobao.org"
   }
 }
 ```
 
 这是一组将在发布时使用的配置值。 如果要设置标记，注册表或访问权限，则特别方便，以便确保给定的包未标记为 `latest`，发布到全局公共 `registry` 或默认情况下，作用域模块(@scoped)是私有的。
 
-可以覆盖任何配置值，但只有 `tag`，`registry` 和 `access` 可能对于发布而言很重要。
+可以覆盖任何配置值，但只有 `tag`，`registry` 和 `access` 可能对于发布而言很重要，[npm-config](https://docs.npmjs.com/misc/config#config-settings)。
 
 ## Yarn
 
