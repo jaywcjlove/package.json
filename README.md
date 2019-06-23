@@ -1,7 +1,7 @@
 Package.json
 ---
 
-文档复制 [yarnpkg](https://yarnpkg.com/lang/en/docs/package-json/) 官方文档，并不是完全复制，增加了一些内容和一些描述。你也可以参考 [npm documentation](https://docs.npmjs.com/files/package.json), [std-pkg](https://github.com/jamiebuilds/std-pkg), [clean-publish](https://github.com/shashkovdanil/clean-publish), [package-json-validator](http://package-json-validator.com/), [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), [rc](https://github.com/dominictarr/rc)。
+文档复制 [yarnpkg](https://yarnpkg.com/lang/en/docs/package-json/) 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 [npm documentation](https://docs.npmjs.com/files/package.json), [std-pkg](https://github.com/jamiebuilds/std-pkg), [clean-publish](https://github.com/shashkovdanil/clean-publish), [package-json-validator](http://package-json-validator.com/), [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), [rc](https://github.com/dominictarr/rc)。
 
 <!-- TOC -->
 
@@ -480,6 +480,10 @@ The repository is the location where the actual code for your package lives.
   }
 }
 ```
+
+这是一组将在发布时使用的配置值。 如果要设置标记，注册表或访问权限，则特别方便，以便确保给定的包未标记为 `latest`，发布到全局公共 `registry` 或默认情况下，作用域模块(@scoped)是私有的。
+
+可以覆盖任何配置值，但只有 `tag`，`registry` 和 `access` 可能对于发布而言很重要。
 
 ## Yarn
 
