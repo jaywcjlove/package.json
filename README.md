@@ -94,17 +94,19 @@ https://registry.npmjs.org/[包名]/-/[包名]-[version].tgz
 
 ### `version`
 
+包的当前版本，严格遵循 [Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/) 语义化版本规范。
+
 ```json
 {
   "version": "1.0.0"
 }
 ```
 
-包的当前版本，严格遵循 [Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/) 语义化版本规范。
-
 ## 信息类字段
 
 ### `description`
+
+Description 是帮助使用者了解包的功能的字符串，包管理器也会把这个字符串作为搜索关键词。
 
 ```json
 {
@@ -112,9 +114,9 @@ https://registry.npmjs.org/[包名]/-/[包名]-[version].tgz
 }
 ```
 
-Description 是帮助使用者了解包的功能的字符串，包管理器也会把这个字符串作为搜索关键词。
-
 ### `keywords`
+
+关键字是一个字符串数组，当在包管理器里搜索包时很有用。
 
 ```json
 {
@@ -122,9 +124,9 @@ Description 是帮助使用者了解包的功能的字符串，包管理器也�
 }
 ```
 
-关键字是一个字符串数组，当在包管理器里搜索包时很有用。
-
 ### `license`
+
+所有包都应该指定许可证，以便让用户了解他们是在什么授权下使用此包，以及此包还有哪些附加限制。
 
 ```json
 {
@@ -134,8 +136,6 @@ Description 是帮助使用者了解包的功能的字符串，包管理器也�
   "license": "UNLICENSED"
 }
 ```
-
-所有包都应该指定许可证，以便让用户了解他们是在什么授权下使用此包，以及此包还有哪些附加限制。
 
 鼓励使用开源 [(OSI-approved)](https://opensource.org/licenses/alphabetical) 许可证，除非你有特别的原因不用它。 如果你开发的包是你工作的一部分，最好和公司讨论后再做决定。
 
@@ -162,13 +162,13 @@ Description 是帮助使用者了解包的功能的字符串，包管理器也�
 
 ### `bugs`
 
+问题反馈系统的 URL，或者是 email 地址之类的链接。用户通过该途径向你反馈问题。
+
 ```json
 {
   "bugs": "https://github.com/user/repo/issues"
 }
 ```
-
-问题反馈系统的 URL，或者是 email 地址之类的链接。用户通过该途径向你反馈问题。
 
 ### `repository`
 
