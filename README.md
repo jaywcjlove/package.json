@@ -306,13 +306,6 @@ The repository is the location where the actual code for your package lives.
 
 ## 打包包字段
 
-目前字段支持情况
-
-|  | main | browser | module | es2015 |
-| ---- | ---- | ---- | ---- | ---- |
-| webpack | ✔ | ✔ | ✔ | – |
-| Rollup | (✔) | (✔) | ✔ | – |
-
 ### `module`
 
 `pkg.module` 将指向具有 `ES2015` 模块语法的模块，但仅指向目标环境支持的语法功能。 完整的描述[在这里](https://github.com/rollup/rollup/wiki/pkg.module)。
