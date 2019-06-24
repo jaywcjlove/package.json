@@ -1,7 +1,7 @@
 Package.json
 ---
 
-文档复制 [yarnpkg](https://yarnpkg.com/lang/en/docs/package-json/) 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 [npm documentation](https://docs.npmjs.com/files/package.json), [std-pkg](https://github.com/jamiebuilds/std-pkg), [clean-publish](https://github.com/shashkovdanil/clean-publish), [package-json-validator](http://package-json-validator.com/), [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), [rc](https://github.com/dominictarr/rc)。
+文档复制 [yarnpkg](https://yarnpkg.com/zh-Hans/docs/package-json) 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 [npm documentation](https://docs.npmjs.com/files/package.json), [std-pkg](https://github.com/jamiebuilds/std-pkg), [clean-publish](https://github.com/shashkovdanil/clean-publish), [package-json-validator](http://package-json-validator.com/), [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), [rc](https://github.com/dominictarr/rc)。
 
 <!-- TOC -->
 
@@ -25,6 +25,11 @@ Package.json
   - [`bin`](#bin)
   - [`man`](#man)
   - [`directories`](#directories)
+  - [`types`](#types)
+- [打包包字段](#打包包字段)
+  - [`module`](#module)
+  - [`browser`](#browser)
+  - [`esnext`](#esnext)
 - [任务类字段](#任务类字段)
   - [`scripts`](#scripts)
   - [特定的 `scripts`](#特定的-scripts)
@@ -286,6 +291,58 @@ The repository is the location where the actual code for your package lives.
 ```
 
 当你的包安装时，你可以指定确切的位置来放二进制文件、man pages、文档、例子等。
+
+### `types`
+
+这是一个只在 [TypeScript](https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html) 中生效的字段，如果您的包有一个 `main.js` 文件，您还需要在  `package.json` 文件中指明主声明文件。 将 `types` 属性设置为指向 bundled 的声明文件。 例如：
+
+```json
+{
+  "types": "./lib/main.d.ts",
+}
+```
+
+如果您的主声明文件名为 `index.d.ts` 并且位于包的根目录（`index.js`旁边），则不需要标记 `types` 属性，建议这样做。
+
+## 打包包字段
+
+目前字段支持情况
+
+|  | main | browser | module | es2015 |
+| ---- | ---- | ---- | ---- | ---- |
+| webpack | ✔ | ✔ | ✔ | – |
+| Rollup | (✔) | (✔) | ✔ | – |
+
+### `module`
+
+`pkg.module` 将指向具有 `ES2015` 模块语法的模块，但仅指向目标环境支持的语法功能。 完整的描述[在这里](https://github.com/rollup/rollup/wiki/pkg.module)。
+
+支持：[rollup](https://github.com/rollup/rollup-plugin-node-resolve), [webpack](https://webpack.js.org/configuration/resolve/#resolve-mainfields)
+
+### `browser`
+
+字段由模块作者提供，作为 `JavaScript` 包或组件工具的提示，用于打包模块以供客户端使用。 提案就[在这里](https://github.com/defunctzombie/package-browser-field-spec)。
+
+### `esnext`
+
+完整的[提案在这里](http://2ality.com/2017/04/transpiling-dependencies-babel.html)。 简短说明：
+
+- `esnext`：ES模块中使用阶段4功能（或更旧版本）的源代码，未编译。
+- `main`：指向一个CommonJS模块（或UMD模块），其 `JavaScript` 与 `Node.js` 当前可以处理的一样现代。
+- 大多数 `module` 用例应该可以通过 `esnext` 处理。
+- `browser` 可以通过 `esnext` 的扩展版本来处理
+
+```json
+{
+  "main": "main.js",
+  "esnext": {
+    "main": "main-esnext.js",
+    "browser": "browser-specific-main-esnext.js"
+  }
+}
+```
+
+另请参阅：[Delivering untranspiled source code via npm](http://2ality.com/2017/06/pkg-esnext.html)
 
 ## 任务类字段
 
