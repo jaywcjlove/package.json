@@ -40,7 +40,7 @@ Package.json
   - [`dependencies`](#dependencies)
   - [`devDependencies`](#devdependencies)
   - [`peerDependencies`](#peerdependencies)
-  = [`peerDependenciesMeta`](#peerDependenciesMeta)
+  - [`peerDependenciesMeta`](#peerDependenciesMeta)
   - [`optionalDependencies`](#optionaldependencies)
   - [`bundledDependencies`](#bundleddependencies)
 - [系统](#系统)
