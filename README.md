@@ -40,6 +40,7 @@ Package.json
   - [`dependencies`](#dependencies)
   - [`devDependencies`](#devdependencies)
   - [`peerDependencies`](#peerdependencies)
+  = [`peerDependenciesMeta`](#peerDependenciesMeta)
   - [`optionalDependencies`](#optionaldependencies)
   - [`bundledDependencies`](#bundleddependencies)
 - [系统](#系统)
@@ -438,6 +439,26 @@ The repository is the location where the actual code for your package lives.
 {
   "peerDependencies": {
     "package-3": "^2.7.18"
+  }
+}
+```
+
+### `peerDependenciesMeta`
+
+添加可选设置以消除丢失的对等依赖性警告，[#6671](https://github.com/yarnpkg/yarn/pull/6671) 。
+
+```json
+{
+  "peerDependenciesMeta": {
+    "node-sass": {
+      "optional": true
+    },
+    "sass": {
+      "optional": true
+    },
+    "fibers": {
+      "optional": true
+    }
   }
 }
 ```
