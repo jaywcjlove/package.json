@@ -498,6 +498,7 @@ The repository is the location where the actual code for your package lives.
 ```json
 {
   "engines": {
+    "node": "^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0"
     "node": ">=4.4.7 <7.0.0",
     "zlib": "^1.2.8",
     "yarn": "^0.14.0"
