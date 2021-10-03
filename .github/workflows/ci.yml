@@ -13,9 +13,7 @@ jobs:
         with:
           node-version: 14
 
-
       - run: mkdir -p build
-      - run: cp -rp assets build
       - run: npm i markdown-to-html-cli -g
       - run: markdown-to-html --output build/index.html
 
