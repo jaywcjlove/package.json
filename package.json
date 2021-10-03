@@ -1,0 +1,12 @@
+{
+  "markdown-to-html": {
+    "github-corners": "https://github.com/jaywcjlove/package.json",
+    "document": {
+      "title": "Package.json",
+      "meta": [
+        { "description": "文件 package.json 的说明文档。" },
+        { "keywords": "nodejs,npm,yarn,npm-package,npm-module" }
+      ]
+    }
+  }
+}
