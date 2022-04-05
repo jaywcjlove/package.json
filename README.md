@@ -591,3 +591,16 @@ The repository is the location where the actual code for your package lives.
 
 注意，`yarn install --flat` 命令将会自动在 `package.json` 文件里加入 `resolutions` 字段。
 
+## Contributors
+
+As always, thanks to our amazing contributors!
+
+<a href="https://github.com/jaywcjlove/package.json/graphs/contributors">
+  <img src="https://jaywcjlove.github.io/package.json/CONTRIBUTORS.svg" />
+</a>
+
+Made with [action-contributors](https://github.com/jaywcjlove/github-action-contributors).
+
+## License
+
+Licensed under the MIT License.
