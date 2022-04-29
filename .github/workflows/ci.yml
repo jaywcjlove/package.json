@@ -13,13 +13,7 @@ jobs:
         with:
           node-version: 14
 
-      - run: mkdir -p build
-
-      - name: Converts Markdown to HTML
-        uses: jaywcjlove/markdown-to-html-cli@main
-        with:
-          source: README.md
-          output: build/index.html
+      - run: npm run build
 
       - name: get tag version
         id: tag_version
@@ -32,4 +26,4 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: ${{steps.tag_version.outputs.tag}} ${{ github.event.head_commit.message }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./dist

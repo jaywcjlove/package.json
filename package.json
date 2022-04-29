@@ -1,13 +1,27 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
+  "private": true,
+  "name": "package-json",
+  "title": "Package.json",
+  "description": "文件 package.json 的说明文档。",
+  "license": "MIT",
   "version": "1.0.0",
-  "markdown-to-html": {
-    "github-corners": "https://github.com/jaywcjlove/package.json",
-    "document": {
-      "title": "Package.json",
-      "meta": [
-        { "description": "文件 package.json 的说明文档。" },
-        { "keywords": "nodejs,npm,yarn,npm-package,npm-module" }
-      ]
-    }
+  "scripts": {
+    "start": "idoc --watch",
+    "build": "idoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/package.json"
+  },
+  "keywords": [
+    "nodejs",
+    "npm",
+    "yarn",
+    "npm-package",
+    "npm-module"
+  ],
+  "dependencies": {
+    "idoc": "^1.17.4"
   }
 }
