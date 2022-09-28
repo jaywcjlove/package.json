@@ -1,134 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Package.json </title>
-  
-  <meta name="description" content="文档复制 yarnpkg 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 npm documentation, std-pkg, clean-publish, package-json-validator, ">
-  
-  
-  <meta name="keywords" content="nodejs,npm,yarn,npm-package,npm-module">
-  
-  <link rel="stylesheet" type="text/css" href="css/main.css?v=1.17.4">
-  <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1.17.4">
-  <link rel="stylesheet" type="text/css" href="css/media.css?v=1.17.4">
-  <link rel="stylesheet" type="text/css" href="css/sidebar.css?v=1.17.4">
-  <link rel="stylesheet" type="text/css" href="css/copy.css?v=1.17.4">
-  <link rel="stylesheet" type="text/css" href="css/demo-preview.css?v=1.17.4">
-  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PACKAGE.JSON Package.json</title>
+    <meta name="description" content="文档复制 yarnpkg 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 npm documentation, std-pkg, clean-publish, cosmiconfig, rc。">
+    <meta name="keywords" content="nodejs,npm,yarn,npm-package,npm-module">
+    <link rel="stylesheet" type="text/css" href="css/main.css?v=1.21.11">
+    <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1.21.11">
+    <link rel="stylesheet" type="text/css" href="css/media.css?v=1.21.11">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css?v=1.21.11">
+    <link rel="stylesheet" type="text/css" href="css/copy.css?v=1.21.11">
+    <link rel="stylesheet" type="text/css" href="css/demo-preview.css?v=1.21.11">
     <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
-  
-  <script src="js/copy.js?v=1.17.4"></script>
-  <script src="js/dark-mode.js?v=1.17.4"></script>
-  <script src="js/markdown-style.js?v=1.17.4"></script>
-</head>
-<body id="idoctotop">
-  <a href="#idoctotop" class="gototop">top</a>
-<header class="header">
-  <article class="inner warpper">
-    <a class="logo" href="index.html">
-      
-        <img alt="Package.json logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAXNSR0IArs4c6QAAEIlJREFUeF7tnXtwVNUdx3/n7kIe8sgTNEjLTMeAUrVUKB0U0f6D1ZkKCqhBJKDSdjplHEnW6B8l0hZIQKBaq+KMQDvTOhYfnY5jpU7rg9pp0Y5aSysKA4SEAJJNIJjdkN3TOWuigcnuub97727u2fu9MzuJ7ve8vt/72XPP2XCvIBxwAA6kdUDAGzgAB9I7AEBwdsCBDA4AEJwecACA4ByAA84cwAzizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMgawC0tTU9DgRLRRCVDrrHqtUBxFFiSj1U0rZYVlWRzKZVP+v3bKsViJqi8fjbX19fa2NjY1JVu0BFG/atKlMSlmRSCQqhRAVRFQhpVRZqt9TP6WUJUR0wcBLCDHweyhHlm1PJBI7Hnzwwdez0V7WAGlubpbZ6LCHdbYLIVqllB8JIfZIKfcUFha+s3LlyriHbfi6qrVr16oTf6plWZcR0VQhxGUKAAWDekkpc3WSu/bJsqypdXV1e11XdF4FWQFkw4YNm6WU93nd2RzV94GCxbIsBc0/IpHIezlqN6vNrFu3blIoFLpOSjmjHwQFRC5m9qyOa1DleyKRyLe8biwrgDQ3N6vLmSqvOztM9Z0moreklLuFEO/29fW9+9BDD50cpr7YbnYACCKaLYS4RkpZbbuwoUIhxJX19fUfeNn9bAHi98srxx4KIRJSyn9KKV+TUu5qaGjY7bgyjwtu3LhxbjKZnNsPxAyPqzehuusikcgbXnYUgLh3U31i7VKwPPDAA392Xx2vhqampuuFEDcS0U1EdCmvdN6pAYifI5VSfqJgIaJXe3p6djU2Nsay0d/169fPCoVCN0opFRTfyEYbJtZpWdacurq6N73sO2YQL908ty61Q5aaWWKxmIJFbT+7Opqbm+8honuJyPPFqKuO+aRw3gBSX1/vuaXxeJx6e3tJ/Tz/d/XfPT09FI1Gv3glEgnP+5ChwhNEtFMIsbO+vv4v3IabmpqWWJb1AynlLG5Zrr6goICKioqouLj4nJ+D/9/g35U+V8ezzz5LLS0taZtLJpNzGhoazJ9BsgEIN6Surq5zgFHwHD16NAVSNg8hxG4p5c5wOLzz/vvvV7t9aY/169cvUmAQ0fXZ6FNZWRmNHz8+9brwwgtTP0eOHJmNpjypUwcIEV0biUTe8qSx/kqG5RLLD4CkM/HkyZPU2tpKR44cSf3s7Oz00u/BdXUR0fPJZHJnQ0PDK4Pf2LBhw81SSgXGDV41rk78iRMnpl4mwDDUuAGIV2eDh/UoYNra2lIvNb2rmSYLxx4i+lgIsU9K+V0imum2DQVEVVVV6jVp0iSaMGGC2yqHvbwOEMuyZtfV1Xm67Y4ZhBn74cOH6dChQ3Tw4EFqb29nls6uvKKigqqrq1MwXHzxxRQOh7PbYI5r1wGSTCZne/29FABxEfKxY8dSsAwA46IqV0UnT55MAy9XFfm8sA4QIromEon8zcthABCP3FSXXvv370+91CyT7WNgtpgyZQqVl5dnuzlf1A9AfBGD+04cP36cDhw4kIJFrV28PNR64oorrkjNGEE7dICEQqGrV61a9baXvrieQQp2nKq2pLxKyuQXia058fTqTJ308y6Wl+aquhQgChQFjALH6aFmjOnTp9Pll1/utArjy+kAeX70nGfeL6xOfVEiRfLt8MiC98/UjDrmZuCuACnY3rlREK06vwNrjm/N2KcgATLYCHXpNXAZZnc3LBQK0cyZM2nGjBm+/o7CzUlot6wOkKdLb6aWEePPr25rrLbk+3bbOF/nGJDC7Z1p/2IXgOjj2Lt3L3344YepBX66Q31jvWDBgtT3FjiIHAKSsi5WW+LoXHdUqHBH53MkaWG60ACIvdP57NmztGXLlrRitV1bU1Njr7IAqNwAIokeideW1HFtYgNSsL3za4JI/dVq2gOA2IsBgNjzaUClB2QetYwYl7ZSKazJ8aVj9nFaZQNStCM6X0rxAgDh2Dy0FoDwPNQBsrV0Hh3JAIggUdNTO/Z3nFbZgBRuizaSEBl3qTCD2IsAgNjzye4MogOEpHw4tqy0kdMqAOG45bEWgPAMdTuDABCe38OuBiC8CAAIzy/j1QCEF6EOkKdK51PriAx3MsIlFs/w4VYDEF4CAITnl/FqAMKLEIDw/DJeDUB4EWoBKZtPrWFcYvFc9bEagPDC0QHyZNl8agMgPFP9rAYgvHQACM8v49UAhBehHpBbqC2snsyQ5sAuFs/w4VYDEF4CAITnl/FqAMKLUAfIE2W30FHMIDxT/awGILx0AAjPL+PVAIQXIQDp92vfvn3U3d3Nc8+HanWPqlGjRqXtmReAqNulqpfpx0UXXUTqlenQA3IrHQ1nuMNLvizSAcjnp4mdf1EIQL5E6okyAGLUByVmEPtxeTGD/KrsVmrHDGLf9OFWAhD7CQCQQV7pbvuDSyxcYg2Flm4NghnE/geSL5SYQezH4M0MsoDaw2XpG8Ui3X4guVACEPsuewHI42UL6FhQALFvrX+V6tkcudjmPX1aPcrd7GP06NGut3kDA4jZUdvvvRffg9hvzXylbg0CQMzP+JwRABBeoACE55fxagDCi1AHyC/LFtLxcGn+L9J5tpmrBiC87AAIzy/j1QCEFyEA4fllvBqA8CIEIDy/jFcDEF6EOkAeK1tIJ7AG4ZnqZzUA4aUDQHh+Ga8GILwI9YAsohPhEuxi8Wz1rxqA8LLRAlK+iE6EAAjPVR+rAQgvHADC88t4NQDhRagD5NHyRfQpZhCeqX5WAxBeOgCE55fxagDCixCA8PwyXg1AeBHqAbmNPg2NxS4Wz1b/qgEILxsdIL8ov41OAhCeqX5WAxBeOgCE55fxagDCixCA8PwyXg1AeBECEJ5fxqsBCC9CHSBbym+njtAYLNJ5tvpXDUB42QCQfr/y4WbMaijqTh25uKsJ7zTzr9rtzasDM4Pgzoqfn8S4efW5MGMG6fcDgACQoeY5HSCby2+naBDWIAAEgACQDJfCAASAOAPkDoqGRuf/LhYAASAABDMIebHNiydMfXkibS7HDOLfPcoheoa7u9uPy4u7u28qv4M6g3CJlQ8P8Bw4NbL9PUhQvFJ+6naxAgOI/c8ds5VeXGKZ7QCv93pAaqgzlP6pwpQvD9Dh2WauGoDwsgMgPL+MVwMQXoQ6QB4pr6EuzCA8U/2sBiC8dLSAVNRQl4VLLJ6rPlYDEF44WkAwg/AM9bsagPAS0gKCGYRnqN/VAISXkA6QjRWL6ZR1Qf7/qQnPNnPVAISXHQDh+WW8GoDwIgQgPL+MVwMQXoQAhOeX8WoAwotQB8iGisV0GmsQnql+VgMQXjp6QO6k01YxFuk8W/2rBiC8bAAIzy/j1QCEFyEA4fllvBqA8CIEIDy/jFcDEF6EOkCaK+6kbqxBeKb6WQ1AeOnoAVlC3VYRFuk8W/2rBiC8bAAIzy/j1QCEFyEA4fllvBqA8CLUAdJUsYTO4BKLZ6qf1QCElw4A4fllvBqA8CIEIDy/jFcDEF6EekDuojNWIXaxeLb6Vw1AeNnoAFlfcRd9FgRA8ACdz08cu88H4Z1m/lW7fYBOYADBzat5gOTDB4oXtx4FIP798BuyZ7g3r/3AAMggr+rr6zM6hxkEM8hQJ4huDbKuYin1WAX5v0gHIAAEgGSYQwAIAHEESOVS6hGYQexf2A6zEmsQ+wF4sQZZB0DsG+4HJQCxnwIAYSzSg/JQGC++KAyKV+r00S3S11YupVgQLrHsf+6YrfQCELMd4PVeD0gtxcTI/N/F4tlmrhqA8LIDIDy/jFcDEF6EAITnl/FqAMKLUAfIzytrKY5LLJ6pflYDEF46AITnl/FqAMKLUA/IMoqLEVik82z1rxqA8LIBIDy/jFcDEF6EOkB+VrmMejGD8Ez1sxqA8NIBIDy/jFcDEF6EAITnl/FqAMKLUA/IcuoVYSzSebb6Vw1AeNnoAPlp5XI6C0B4pvpZDUB46QAQnl/GqwEIL0IAwvPLeDUA4UUIQHh+Ga8GILwI9YDcTWdFCIt0nq3+VQMQXjY6QNZU3k19AIRnqp/VAISXDgDh+WW8GoDwIgQgPL+MVwMQXoQAhOeX8WoAwotQB8jDlXdTAmsQnql+VgMQXjp6QO6hhLCwi8Wz1b9qAMLLBoDw/DJeDUB4EQIQnl/GqwEIL0IdII3j7qEk4RKL56qP1QCEFw4A4fllvBqA8CIEIDy/jFcDEF6EekDupSQJ7GLxbPWvGoDwstEBsnrcvSQBCM9UP6sBCC+dwAAya9YsnjN5qi4tLaWXX3457eiqqqpo2rRpFI1G89QB3rBaWlpIvdIdeTOD8GwJrrqgoIDi8XhwDWCOHIAwDYM8WA6sHreCZKYhS/lwbFlpI8eVDEv+oasp3BZtJCFWZ2pkzfGtnD5ACwc8ceAn41ZkrgeAeOIzKjHUAWMAWdz1Kk2OHzLUZnTbRAc6QmNoS/ntZswg03v+S987/ZaJPqPPhjqwu/hK2jVqphmAqF5OjR+g27peM9RudNskB2zBoQbklzXIgLlFMk7lfV0UpoRJfmetr8qLS+MHqbr3sKM2Ph45kfaPnEBtIyodlc+3QupRB9HQaOrJ9OjnwYP2GyD5FohX4/lm7COad+oNVnUvjZlD/yqczCoD8XkOABBzTolZn/2bbuj+u60O/2H0tfRu0RRbWogyOJALQAq2Re8TQmxGEO4dUBsZakMj06EWnuoaG4d7B6SkH8aXlTzJqYn9RWHRts6FUtBznEagTe/Aks5X6JLeof++yPbiEwbbckAkrat7lo9525a4X8QGpHh751VJonc4jUCb3gG1kbGi4yUqT3SdI1LrDbXuwOGZA/tiZ3qvoh+N6+bUyAZEVV60LfqoFOLHnIagTe9AVd+ntKLjRbL6/5LofwVfpd+OnQvLvHRAyutjy0pf51bpCBDViJ2/yeJ2Jsj6ge+NWkaMp+0lN2V+UlKQjXIwdinEyvjSsY85KJrpn1/pqyt65tQsaSWXE4lvE8mp+hJQZHJg9mfv0fuFl9Ap6wIY5d6B16VaCoTEU/ElYz9xWp3jGcRpg/lSrnBH559IkinXQaditSVj88X7XI4DgDh0u/A3p2ZTIvmmw+K5LeZg/z+3HfRvawDERTYF26MvChLzXFSRg6LiP7HasV/PQUN52QQAcRFr8Y7otKQULxHRV1xUk9WiQtKinmUlv89qI3lcOQBxGW7hM53fIYv+SETFLqvyvDjgcG8pAHHvIRX9OnpLUorFQtK1RFThQZXOq5B0jAT9VUh6ATOHcxsHSgIQ9x6eU0PqsitJw7JjlLRGdPQuHfWBx0MKdHUAJNDxY/A6BwCIziG8H2gHAEig48fgdQ4AEJ1DeD/QDgCQQMePwescACA6h/B+oB0AIIGOH4PXOQBAdA7h/UA7AEACHT8Gr3MAgOgcwvuBdgCABDp+DF7nAADROYT3A+0AAAl0/Bi8zgEAonMI7wfaAQAS6PgxeJ0DAETnEN4PtAMAJNDxY/A6BwCIziG8H2gH/g8LPRyq8vuk8QAAAABJRU5ErkJggg==">
-      
-      <span class="title">Package.json</span>
-    </a>
-    <div class="content">
-      <ul class="menu">
-        
-      </ul>
-      
-        <a href="https://github.com/jaywcjlove/package.json" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-        </a>
-      
-      <dark-mode permanent></dark-mode>
-    </div>
-  </article>
-</header>
-
-<div class="warpper-content warpper  ">
-  
-  <markdown-style>
-    
-<p>文档复制 <a href="https://classic.yarnpkg.com/en/docs/package-json">yarnpkg</a> 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 <a href="https://docs.npmjs.com/files/package.json">npm documentation</a>, <a href="https://github.com/jamiebuilds/std-pkg">std-pkg</a>, <a href="https://github.com/shashkovdanil/clean-publish">clean-publish</a>, <a href="http://package-json-validator.com/">package-json-validator</a>, <a href="https://github.com/davidtheclark/cosmiconfig">cosmiconfig</a>, <a href="https://github.com/dominictarr/rc">rc</a>。</p>
-<blockquote style="border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;">
-<p>🚧 注意：如果你直接克隆项目，项目名称为 <code>package.json</code>，会导致你其它 <code>node.js</code> 项目可能有问题。</p>
-</blockquote>
-<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
-
-<h2 id="重要字段"><a aria-hidden="true" tabindex="-1" href="#重要字段" class="anchor"><span class="icon icon-link"></span></a>重要字段</h2>
-<p>你的 <code>package.json</code> 中最重要的两个字段是 <code>name</code> 和 <code>version</code>，如果没有它们，您的包将无法安装。 <code>name</code> 和<code>version</code> 字段一起用于创建唯一ID。</p>
-<h3 id="name"><a aria-hidden="true" tabindex="-1" href="#name" class="anchor"><span class="icon icon-link"></span></a><code>name</code></h3>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+    <script src="js/copy.js?v=1.21.11"></script>
+    <script src="js/dark-mode.js?v=1.21.11"></script>
+    <script src="js/markdown-style.js?v=1.21.11"></script>
+  </head>
+  <body id="idoctotop"><a href="#idoctotop" class="gototop">top</a>
+    <header class="header">
+      <article class="inner warpper"><a class="logo" href="index.html"><img alt="Package.json logo" src="data:image/png;base64,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">
+<span class="title">Package.json</span></a>
+        <div class="content">
+          <ul class="menu"></ul><a href="https://github.com/jaywcjlove/package.json" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg></a>
+          <dark-mode permanent=""></dark-mode>
+        </div>
+      </article>
+    </header>
+    <div class="warpper-content warpper">
+      <markdown-style>
+        <p>文档复制 <a href="https://classic.yarnpkg.com/en/docs/package-json">yarnpkg</a> 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 <a href="https://docs.npmjs.com/files/package.json">npm documentation</a>, <a href="https://github.com/jamiebuilds/std-pkg">std-pkg</a>, <a href="https://github.com/shashkovdanil/clean-publish">clean-publish</a>, <a href="https://github.com/davidtheclark/cosmiconfig">cosmiconfig</a>, <a href="https://github.com/dominictarr/rc">rc</a>。</p>
+        <blockquote style="border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;">
+          <p>🚧 注意：如果你直接克隆项目，项目名称为 <code>package.json</code>，会导致你其它 <code>node.js</code> 项目可能有问题。</p>
+        </blockquote><!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
+        <h2 id="重要字段"><a aria-hidden="true" tabindex="-1" href="#重要字段" class="anchor"><span class="icon icon-link"></span></a>重要字段</h2>
+        <p>你的 <code>package.json</code> 中最重要的两个字段是 <code>name</code> 和 <code>version</code>，如果没有它们，您的包将无法安装。 <code>name</code> 和<code>version</code> 字段一起用于创建唯一ID。</p>
+        <h3 id="name"><a aria-hidden="true" tabindex="-1" href="#name" class="anchor"><span class="icon icon-link"></span></a><code>name</code></h3>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"my-awesome-package"</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;name&#x22;: &#x22;my-awesome-package&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>这是您的 <code>包</code> 的名称。 它在URL中使用，作为参数命令行，以及 <code>node_modules</code> 中的目录名。</p>
-<pre><code class="language-sh code-highlight"><span class="code-line line-number" line="1">yarn add [包名]
-</span><span class="code-line line-number" line="2"># or
-</span><span class="code-line line-number" line="3">npm install [包名]
+        <p>这是您的 <code>包</code> 的名称。 它在URL中使用，作为参数命令行，以及 <code>node_modules</code> 中的目录名。</p>
+        <pre class="language-sh"><code class="language-sh code-highlight"><span class="code-line line-number" line="1"><span class="token function">yarn</span> <span class="token function">add</span> <span class="token punctuation">[</span>包名<span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="2"><span class="token comment"># or</span>
+</span><span class="code-line line-number" line="3"><span class="token function">npm</span> <span class="token function">install</span> <span class="token punctuation">[</span>包名<span class="token punctuation">]</span>
 </span></code><input type="hidden" value="yarn add [包名]
 # or
 npm install [包名]
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<pre><code class="code-highlight"><span class="code-line line-number" line="1">node_modules/[包名]
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">node_modules/[包名]
 </span></code><input type="hidden" value="node_modules/[包名]
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<pre><code class="code-highlight"><span class="code-line line-number" line="1">https://registry.npmjs.org/[包名]/-/[包名]-[version].tgz
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">https://registry.npmjs.org/[包名]/-/[包名]-[version].tgz
 </span></code><input type="hidden" value="https://registry.npmjs.org/[包名]/-/[包名]-[version].tgz
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p><strong>规则</strong></p>
-<ul>
-<li>必须小于或等于214个字符（包括 <code>@scope/</code> for 范围包）。</li>
-<li>不能以点（<code>.</code>）或下划线（<code>_</code>）开头。</li>
-<li>名称中不得包含大写字母。</li>
-<li>必须仅使用URL安全字符。</li>
-</ul>
-<p><strong>Tips</strong></p>
-<ul>
-<li>不要使用和 <code>Node.js</code> 核心模块相同的名字。</li>
-<li>不要在名字里包含 <code>js</code> 或者 <code>node</code> 单词。</li>
-<li>短小精悍，让人看到名字就大概了解包的功能，记住它也会被用在 <code>require()</code> 调用里。</li>
-<li>保证名字在 <a href="https://www.npmjs.com/">npm registry</a> 里是唯一的。</li>
-</ul>
-<h3 id="version"><a aria-hidden="true" tabindex="-1" href="#version" class="anchor"><span class="icon icon-link"></span></a><code>version</code></h3>
-<p>包的当前版本，严格遵循 <a href="http://semver.org/lang/zh-CN/">Semantic Versioning 2.0.0</a> 语义化版本规范。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p><strong>规则</strong></p>
+        <ul>
+          <li>必须小于或等于214个字符（包括 <code>@scope/</code> for 范围包）。</li>
+          <li>不能以点（<code>.</code>）或下划线（<code>_</code>）开头。</li>
+          <li>名称中不得包含大写字母。</li>
+          <li>必须仅使用URL安全字符。</li>
+        </ul>
+        <p><strong>Tips</strong></p>
+        <ul>
+          <li>不要使用和 <code>Node.js</code> 核心模块相同的名字。</li>
+          <li>不要在名字里包含 <code>js</code> 或者 <code>node</code> 单词。</li>
+          <li>短小精悍，让人看到名字就大概了解包的功能，记住它也会被用在 <code>require()</code> 调用里。</li>
+          <li>保证名字在 <a href="https://www.npmjs.com/">npm registry</a> 里是唯一的。</li>
+        </ul>
+        <h3 id="version"><a aria-hidden="true" tabindex="-1" href="#version" class="anchor"><span class="icon icon-link"></span></a><code>version</code></h3>
+        <p>包的当前版本，严格遵循 <a href="http://semver.org/lang/zh-CN/">Semantic Versioning 2.0.0</a> 语义化版本规范。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;version&#x22;: &#x22;1.0.0&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="信息类字段"><a aria-hidden="true" tabindex="-1" href="#信息类字段" class="anchor"><span class="icon icon-link"></span></a>信息类字段</h2>
-<h3 id="description"><a aria-hidden="true" tabindex="-1" href="#description" class="anchor"><span class="icon icon-link"></span></a><code>description</code></h3>
-<p>Description 是帮助使用者了解包的功能的字符串，包管理器也会把这个字符串作为搜索关键词。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h2 id="信息类字段"><a aria-hidden="true" tabindex="-1" href="#信息类字段" class="anchor"><span class="icon icon-link"></span></a>信息类字段</h2>
+        <h3 id="description"><a aria-hidden="true" tabindex="-1" href="#description" class="anchor"><span class="icon icon-link"></span></a><code>description</code></h3>
+        <p>Description 是帮助使用者了解包的功能的字符串，包管理器也会把这个字符串作为搜索关键词。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"我的包的概要简短描述"</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;description&#x22;: &#x22;我的包的概要简短描述&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="keywords"><a aria-hidden="true" tabindex="-1" href="#keywords" class="anchor"><span class="icon icon-link"></span></a><code>keywords</code></h3>
-<p>关键字是一个字符串数组，当在包管理器里搜索包时很有用。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="keywords"><a aria-hidden="true" tabindex="-1" href="#keywords" class="anchor"><span class="icon icon-link"></span></a><code>keywords</code></h3>
+        <p>关键字是一个字符串数组，当在包管理器里搜索包时很有用。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"keywords"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"short"</span><span class="token punctuation">,</span> <span class="token string">"relevant"</span><span class="token punctuation">,</span> <span class="token string">"keywords"</span><span class="token punctuation">,</span> <span class="token string">"for"</span><span class="token punctuation">,</span> <span class="token string">"searching"</span><span class="token punctuation">]</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;keywords&#x22;: [&#x22;short&#x22;, &#x22;relevant&#x22;, &#x22;keywords&#x22;, &#x22;for&#x22;, &#x22;searching&#x22;]
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="license"><a aria-hidden="true" tabindex="-1" href="#license" class="anchor"><span class="icon icon-link"></span></a><code>license</code></h3>
-<p>所有包都应该指定许可证，以便让用户了解他们是在什么授权下使用此包，以及此包还有哪些附加限制。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="license"><a aria-hidden="true" tabindex="-1" href="#license" class="anchor"><span class="icon icon-link"></span></a><code>license</code></h3>
+        <p>所有包都应该指定许可证，以便让用户了解他们是在什么授权下使用此包，以及此包还有哪些附加限制。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"MIT"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"(MIT or GPL-3.0)"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="4">  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"SEE LICENSE IN LICENSE_FILENAME.txt"</span><span class="token punctuation">,</span>
@@ -141,37 +117,37 @@ npm install [包名]
   &#x22;license&#x22;: &#x22;UNLICENSED&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>鼓励使用开源 <a href="https://opensource.org/licenses/alphabetical">(OSI-approved)</a> 许可证，除非你有特别的原因不用它。 如果你开发的包是你工作的一部分，最好和公司讨论后再做决定。</p>
-<p><strong>license字段必须是以下之一:</strong></p>
-<ul>
-<li>如果你使用标准的许可证，需要一个有效地 <a href="https://spdx.org/licenses/">SPDX 许可证标识</a>。</li>
-<li>如果你用多种标准许可证，需要有效的 <a href="https://www.npmjs.com/package/spdx">SPDX 许可证表达式2.0语法表达式</a>。</li>
-<li>如果你使用非标准的许可证，一个 <code>SEE LICENSE IN &#x3C;文件名></code> 字符串指向你的包里顶级目录的一个 &#x3C;文件名>。</li>
-<li>如果你不想在任何条款下授权其他人使用你的私有或未公开的包，一个 <code>UNLICENSED</code> 字符串。</li>
-</ul>
-<h2 id="链接类字段"><a aria-hidden="true" tabindex="-1" href="#链接类字段" class="anchor"><span class="icon icon-link"></span></a>链接类字段</h2>
-<p>各种指向项目文档、issues 上报，以及代码托管网站的链接字段。</p>
-<h3 id="homepage"><a aria-hidden="true" tabindex="-1" href="#homepage" class="anchor"><span class="icon icon-link"></span></a><code>homepage</code></h3>
-<p>是包的项目主页或者文档首页。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>鼓励使用开源 <a href="https://opensource.org/licenses/alphabetical">(OSI-approved)</a> 许可证，除非你有特别的原因不用它。 如果你开发的包是你工作的一部分，最好和公司讨论后再做决定。</p>
+        <p><strong>license字段必须是以下之一:</strong></p>
+        <ul>
+          <li>如果你使用标准的许可证，需要一个有效地 <a href="https://spdx.org/licenses/">SPDX 许可证标识</a>。</li>
+          <li>如果你用多种标准许可证，需要有效的 <a href="https://www.npmjs.com/package/spdx">SPDX 许可证表达式2.0语法表达式</a>。</li>
+          <li>如果你使用非标准的许可证，一个 <code>SEE LICENSE IN &#x3C;文件名></code> 字符串指向你的包里顶级目录的一个 &#x3C;文件名>。</li>
+          <li>如果你不想在任何条款下授权其他人使用你的私有或未公开的包，一个 <code>UNLICENSED</code> 字符串。</li>
+        </ul>
+        <h2 id="链接类字段"><a aria-hidden="true" tabindex="-1" href="#链接类字段" class="anchor"><span class="icon icon-link"></span></a>链接类字段</h2>
+        <p>各种指向项目文档、issues 上报，以及代码托管网站的链接字段。</p>
+        <h3 id="homepage"><a aria-hidden="true" tabindex="-1" href="#homepage" class="anchor"><span class="icon icon-link"></span></a><code>homepage</code></h3>
+        <p>是包的项目主页或者文档首页。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"homepage"</span><span class="token operator">:</span> <span class="token string">"https://your-package.org"</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;homepage&#x22;: &#x22;https://your-package.org&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="bugs"><a aria-hidden="true" tabindex="-1" href="#bugs" class="anchor"><span class="icon icon-link"></span></a><code>bugs</code></h3>
-<p>问题反馈系统的 URL，或者是 email 地址之类的链接。用户通过该途径向你反馈问题。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="bugs"><a aria-hidden="true" tabindex="-1" href="#bugs" class="anchor"><span class="icon icon-link"></span></a><code>bugs</code></h3>
+        <p>问题反馈系统的 URL，或者是 email 地址之类的链接。用户通过该途径向你反馈问题。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"bugs"</span><span class="token operator">:</span> <span class="token string">"https://github.com/user/repo/issues"</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;bugs&#x22;: &#x22;https://github.com/user/repo/issues&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="repository"><a aria-hidden="true" tabindex="-1" href="#repository" class="anchor"><span class="icon icon-link"></span></a><code>repository</code></h3>
-<p>是代码托管的位置。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="repository"><a aria-hidden="true" tabindex="-1" href="#repository" class="anchor"><span class="icon icon-link"></span></a><code>repository</code></h3>
+        <p>是代码托管的位置。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"repository"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"git"</span><span class="token punctuation">,</span> <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"https://github.com/user/repo.git"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"repository"</span><span class="token operator">:</span> <span class="token string">"github:user/repo"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="4">  <span class="token property">"repository"</span><span class="token operator">:</span> <span class="token string">"gitlab:user/repo"</span><span class="token punctuation">,</span>
@@ -186,12 +162,12 @@ npm install [包名]
   &#x22;repository&#x22;: &#x22;gist:a1b2c3d4e5f&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>The repository is the location where the actual code for your package lives.</p>
-<h2 id="项目维护类字段"><a aria-hidden="true" tabindex="-1" href="#项目维护类字段" class="anchor"><span class="icon icon-link"></span></a>项目维护类字段</h2>
-<p>项目的维护者。</p>
-<h3 id="author"><a aria-hidden="true" tabindex="-1" href="#author" class="anchor"><span class="icon icon-link"></span></a><code>author</code></h3>
-<p>作者信息，一个人。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>The repository is the location where the actual code for your package lives.</p>
+        <h2 id="项目维护类字段"><a aria-hidden="true" tabindex="-1" href="#项目维护类字段" class="anchor"><span class="icon icon-link"></span></a>项目维护类字段</h2>
+        <p>项目的维护者。</p>
+        <h3 id="author"><a aria-hidden="true" tabindex="-1" href="#author" class="anchor"><span class="icon icon-link"></span></a><code>author</code></h3>
+        <p>作者信息，一个人。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Your Name"</span><span class="token punctuation">,</span> <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"you@example.com"</span><span class="token punctuation">,</span> <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://your-website.com"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">"Your Name &#x3C;you@example.com> (http://your-website.com)"</span>
 </span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
@@ -200,9 +176,9 @@ npm install [包名]
   &#x22;author&#x22;: &#x22;Your Name <you@example.com> (http://your-website.com)&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="contributors"><a aria-hidden="true" tabindex="-1" href="#contributors" class="anchor"><span class="icon icon-link"></span></a><code>contributors</code></h3>
-<p>贡献者信息，可能很多人。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="contributors"><a aria-hidden="true" tabindex="-1" href="#contributors" class="anchor"><span class="icon icon-link"></span></a><code>contributors</code></h3>
+        <p>贡献者信息，可能很多人。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"contributors"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
 </span><span class="code-line line-number" line="3">    <span class="token punctuation">{</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Your Friend"</span><span class="token punctuation">,</span> <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"friend@example.com"</span><span class="token punctuation">,</span> <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://friends-website.com"</span> <span class="token punctuation">}</span>
 </span><span class="code-line line-number" line="4">    <span class="token punctuation">{</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Other Friend"</span><span class="token punctuation">,</span> <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"other@example.com"</span><span class="token punctuation">,</span> <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://other-website.com"</span> <span class="token punctuation">}</span>
@@ -223,10 +199,10 @@ npm install [包名]
   ]
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="文件类信息"><a aria-hidden="true" tabindex="-1" href="#文件类信息" class="anchor"><span class="icon icon-link"></span></a>文件类信息</h2>
-<p>指定包含在项目中的文件，以及项目的入口文件。</p>
-<h3 id="files"><a aria-hidden="true" tabindex="-1" href="#files" class="anchor"><span class="icon icon-link"></span></a><code>files</code></h3>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h2 id="文件类信息"><a aria-hidden="true" tabindex="-1" href="#文件类信息" class="anchor"><span class="icon icon-link"></span></a>文件类信息</h2>
+        <p>指定包含在项目中的文件，以及项目的入口文件。</p>
+        <h3 id="files"><a aria-hidden="true" tabindex="-1" href="#files" class="anchor"><span class="icon icon-link"></span></a><code>files</code></h3>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"files"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
 </span><span class="code-line line-number" line="3">    <span class="token string">"filename.js"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="4">    <span class="token string">"directory/"</span><span class="token punctuation">,</span>
@@ -241,19 +217,19 @@ npm install [包名]
   ]
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>项目包含的文件，可以是单独的文件、整个文件夹，或者通配符匹配到的文件。</p>
-<h3 id="main"><a aria-hidden="true" tabindex="-1" href="#main" class="anchor"><span class="icon icon-link"></span></a><code>main</code></h3>
-<p>项目的入口文件。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>项目包含的文件，可以是单独的文件、整个文件夹，或者通配符匹配到的文件。</p>
+        <h3 id="main"><a aria-hidden="true" tabindex="-1" href="#main" class="anchor"><span class="icon icon-link"></span></a><code>main</code></h3>
+        <p>项目的入口文件。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"filename.js"</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;main&#x22;: &#x22;filename.js&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="bin"><a aria-hidden="true" tabindex="-1" href="#bin" class="anchor"><span class="icon icon-link"></span></a><code>bin</code></h3>
-<p>随着项目一起被安装的可执行文件。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="bin"><a aria-hidden="true" tabindex="-1" href="#bin" class="anchor"><span class="icon icon-link"></span></a><code>bin</code></h3>
+        <p>随着项目一起被安装的可执行文件。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"bin"</span><span class="token operator">:</span> <span class="token string">"bin.js"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"bin"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="4">    <span class="token property">"命令名称"</span><span class="token operator">:</span> <span class="token string">"bin/命令路径/命令名称.js"</span><span class="token punctuation">,</span>
@@ -268,9 +244,9 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="man"><a aria-hidden="true" tabindex="-1" href="#man" class="anchor"><span class="icon icon-link"></span></a><code>man</code></h3>
-<p>项目的入口文件。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="man"><a aria-hidden="true" tabindex="-1" href="#man" class="anchor"><span class="icon icon-link"></span></a><code>man</code></h3>
+        <p>项目的入口文件。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"man"</span><span class="token operator">:</span> <span class="token string">"./man/doc.1"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"man"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"./man/doc.1"</span><span class="token punctuation">,</span> <span class="token string">"./man/doc.2"</span><span class="token punctuation">]</span>
 </span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
@@ -279,8 +255,8 @@ npm install [包名]
   &#x22;man&#x22;: [&#x22;./man/doc.1&#x22;, &#x22;./man/doc.2&#x22;]
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="directories"><a aria-hidden="true" tabindex="-1" href="#directories" class="anchor"><span class="icon icon-link"></span></a><code>directories</code></h3>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="directories"><a aria-hidden="true" tabindex="-1" href="#directories" class="anchor"><span class="icon icon-link"></span></a><code>directories</code></h3>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"directories"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"lib"</span><span class="token operator">:</span> <span class="token string">"path/to/lib/"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="4">    <span class="token property">"bin"</span><span class="token operator">:</span> <span class="token string">"path/to/bin/"</span><span class="token punctuation">,</span>
@@ -299,32 +275,32 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>当你的包安装时，你可以指定确切的位置来放二进制文件、man pages、文档、例子等。</p>
-<h3 id="types"><a aria-hidden="true" tabindex="-1" href="#types" class="anchor"><span class="icon icon-link"></span></a><code>types</code></h3>
-<p>这是一个只在 <a href="https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html">TypeScript</a> 中生效的字段，如果您的包有一个 <code>main.js</code> 文件，您还需要在  <code>package.json</code> 文件中指明主声明文件。 将 <code>types</code> 属性设置为指向 bundled 的声明文件。 例如：</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>当你的包安装时，你可以指定确切的位置来放二进制文件、man pages、文档、例子等。</p>
+        <h3 id="types"><a aria-hidden="true" tabindex="-1" href="#types" class="anchor"><span class="icon icon-link"></span></a><code>types</code></h3>
+        <p>这是一个只在 <a href="https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html">TypeScript</a> 中生效的字段，如果您的包有一个 <code>main.js</code> 文件，您还需要在 <code>package.json</code> 文件中指明主声明文件。 将 <code>types</code> 属性设置为指向 bundled 的声明文件。 例如：</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"types"</span><span class="token operator">:</span> <span class="token string">"./lib/main.d.ts"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;types&#x22;: &#x22;./lib/main.d.ts&#x22;,
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>如果您的主声明文件名为 <code>index.d.ts</code> 并且位于包的根目录（<code>index.js</code>旁边），则不需要标记 <code>types</code> 属性，建议这样做。</p>
-<h2 id="打包包字段"><a aria-hidden="true" tabindex="-1" href="#打包包字段" class="anchor"><span class="icon icon-link"></span></a>打包包字段</h2>
-<h3 id="module"><a aria-hidden="true" tabindex="-1" href="#module" class="anchor"><span class="icon icon-link"></span></a><code>module</code></h3>
-<p><code>pkg.module</code> 将指向具有 <code>ES2015</code> 模块语法的模块，但仅指向目标环境支持的语法功能。 完整的描述<a href="https://github.com/rollup/rollup/wiki/pkg.module">在这里</a>。</p>
-<p>支持：<a href="https://github.com/rollup/rollup-plugin-node-resolve">rollup</a>, <a href="https://webpack.js.org/configuration/resolve/#resolve-mainfields">webpack</a></p>
-<h3 id="browser"><a aria-hidden="true" tabindex="-1" href="#browser" class="anchor"><span class="icon icon-link"></span></a><code>browser</code></h3>
-<p>字段由模块作者提供，作为 <code>JavaScript</code> 包或组件工具的提示，用于打包模块以供客户端使用。 提案就<a href="https://github.com/defunctzombie/package-browser-field-spec">在这里</a>。</p>
-<h3 id="esnext"><a aria-hidden="true" tabindex="-1" href="#esnext" class="anchor"><span class="icon icon-link"></span></a><code>esnext</code></h3>
-<p>完整的<a href="http://2ality.com/2017/04/transpiling-dependencies-babel.html">提案在这里</a>。 简短说明：</p>
-<ul>
-<li><code>esnext</code>：ES模块中使用阶段4功能（或更旧版本）的源代码，未编译。</li>
-<li><code>main</code>：指向一个CommonJS模块（或UMD模块），其 <code>JavaScript</code> 与 <code>Node.js</code> 当前可以处理的一样现代。</li>
-<li>大多数 <code>module</code> 用例应该可以通过 <code>esnext</code> 处理。</li>
-<li><code>browser</code> 可以通过 <code>esnext</code> 的扩展版本来处理</li>
-</ul>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>如果您的主声明文件名为 <code>index.d.ts</code> 并且位于包的根目录（<code>index.js</code>旁边），则不需要标记 <code>types</code> 属性，建议这样做。</p>
+        <h2 id="打包包字段"><a aria-hidden="true" tabindex="-1" href="#打包包字段" class="anchor"><span class="icon icon-link"></span></a>打包包字段</h2>
+        <h3 id="module"><a aria-hidden="true" tabindex="-1" href="#module" class="anchor"><span class="icon icon-link"></span></a><code>module</code></h3>
+        <p><code>pkg.module</code> 将指向具有 <code>ES2015</code> 模块语法的模块，但仅指向目标环境支持的语法功能。 完整的描述<a href="https://github.com/rollup/rollup/wiki/pkg.module">在这里</a>。</p>
+        <p>支持：<a href="https://github.com/rollup/rollup-plugin-node-resolve">rollup</a>, <a href="https://webpack.js.org/configuration/resolve/#resolve-mainfields">webpack</a></p>
+        <h3 id="browser"><a aria-hidden="true" tabindex="-1" href="#browser" class="anchor"><span class="icon icon-link"></span></a><code>browser</code></h3>
+        <p>字段由模块作者提供，作为 <code>JavaScript</code> 包或组件工具的提示，用于打包模块以供客户端使用。 提案就<a href="https://github.com/defunctzombie/package-browser-field-spec">在这里</a>。</p>
+        <h3 id="esnext"><a aria-hidden="true" tabindex="-1" href="#esnext" class="anchor"><span class="icon icon-link"></span></a><code>esnext</code></h3>
+        <p>完整的<a href="http://2ality.com/2017/04/transpiling-dependencies-babel.html">提案在这里</a>。 简短说明：</p>
+        <ul>
+          <li><code>esnext</code>：ES模块中使用阶段4功能（或更旧版本）的源代码，未编译。</li>
+          <li><code>main</code>：指向一个CommonJS模块（或UMD模块），其 <code>JavaScript</code> 与 <code>Node.js</code> 当前可以处理的一样现代。</li>
+          <li>大多数 <code>module</code> 用例应该可以通过 <code>esnext</code> 处理。</li>
+          <li><code>browser</code> 可以通过 <code>esnext</code> 的扩展版本来处理</li>
+        </ul>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"main.js"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"esnext"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="4">    <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"main-esnext.js"</span><span class="token punctuation">,</span>
@@ -339,11 +315,11 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>另请参阅：<a href="http://2ality.com/2017/06/pkg-esnext.html">Delivering untranspiled source code via npm</a></p>
-<h2 id="任务类字段"><a aria-hidden="true" tabindex="-1" href="#任务类字段" class="anchor"><span class="icon icon-link"></span></a>任务类字段</h2>
-<p>包里还可以包含一些可执行脚本或者其他配置信息。</p>
-<h3 id="scripts"><a aria-hidden="true" tabindex="-1" href="#scripts" class="anchor"><span class="icon icon-link"></span></a><code>scripts</code></h3>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>另请参阅：<a href="http://2ality.com/2017/06/pkg-esnext.html">Delivering untranspiled source code via npm</a></p>
+        <h2 id="任务类字段"><a aria-hidden="true" tabindex="-1" href="#任务类字段" class="anchor"><span class="icon icon-link"></span></a>任务类字段</h2>
+        <p>包里还可以包含一些可执行脚本或者其他配置信息。</p>
+        <h3 id="scripts"><a aria-hidden="true" tabindex="-1" href="#scripts" class="anchor"><span class="icon icon-link"></span></a><code>scripts</code></h3>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"build-project"</span><span class="token operator">:</span> <span class="token string">"node build-project.js"</span>
 </span><span class="code-line line-number" line="4">  <span class="token punctuation">}</span>
@@ -354,35 +330,35 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>脚本是定义自动化开发相关任务的好方法，比如使用一些简单的构建过程或开发工具。 在 <code>scripts</code> 字段里定义的脚本，可以通过 <code>yarn run &#x3C;script></code> 命令来执行。 例如，上述 <code>build-project</code> 脚本可以通过 <code>yarn run build-project</code> 调用，并执行 <code>node build-project.js</code>。</p>
-<p>有一些特殊的脚本名称。 如果定义了 <code>preinstall</code> 脚本，它会在包安装前被调用。 出于兼容性考虑，<code>install</code>、<code>postinstall</code> 和 <code>prepublish</code> 脚本会在包完成安装后被调用。</p>
-<p><code>start</code> 脚本的默认值为 <code>node server.js</code>。</p>
-<p>参考文档：<a href="https://docs.npmjs.com/files/package.json#default-values">npm docs</a></p>
-<h3 id="特定的-scripts"><a aria-hidden="true" tabindex="-1" href="#特定的-scripts" class="anchor"><span class="icon icon-link"></span></a>特定的 <code>scripts</code></h3>
-<p>对于以下脚本，<code>npm</code> 支持 <code>package.json</code> 文件的 <code>scripts</code> 默认命令字段：</p>
-<ul>
-<li><code>prepublish</code>: 在打包并发布包之前运行，以及在没有任何参数的本地 <code>npm</code> 安装之前运行。 （见下文）</li>
-<li><code>prepare</code>: 在打包和发布包之前运行，在没有任何参数的本地 <code>npm install</code> 上运行，以及安装 git 依赖项时（见下文）。 这是在 <code>preublish</code> 之后运行，但是在 <code>preublishOnly</code> 之前运行。</li>
-<li><code>prepublishOnly</code>: 在包准备和打包之前运行，仅限于npm发布。 （见下文。）</li>
-<li><code>prepack</code>: 在打包 <code>tarball</code> 之前运行（在 <code>npm pack</code>，<code>npm publish</code>，以及安装 git 依赖项时）</li>
-<li><code>postpack</code>: 在生成 <code>tarball</code> 之后运行并移动到其最终目标。</li>
-<li><code>publish</code>, <code>postpublish</code>: 在包发布后运行。</li>
-<li><code>preinstall</code>: 在安装软件包之前运行。</li>
-<li><code>install</code>, <code>postinstall</code>: 安装包后运行。</li>
-<li><code>preuninstall</code>, <code>uninstall</code>: 在卸载软件包之前运行。</li>
-<li><code>postuninstall</code>: 在卸载软件包之后运行。</li>
-<li><code>preversion</code>: 在改变包版本之前运行。</li>
-<li><code>version</code>: 改变包版本后运行，但提交之前。</li>
-<li><code>postversion</code>: 改变包版本后运行，然后提交。</li>
-<li><code>pretest</code>, <code>test</code>, <code>posttest</code>: 由 <code>npm test</code> 命令运行。</li>
-<li><code>prestop</code>, <code>stop</code>, <code>poststop</code>: 由 <code>npm stop</code> 命令运行。</li>
-<li><code>prestart</code>, <code>start</code>, <code>poststart</code>: 由 <code>npm start</code> 命令运行。</li>
-<li><code>prerestart</code>, <code>restart</code>, <code>postrestart</code>: 由 <code>npm restart</code> 命令运行。 注意：如果没有提供重启脚本，<code>npm restart</code> 将运行 <code>stop</code> 和<code>start</code> 脚本。</li>
-<li><code>preshrinkwrap</code>, <code>shrinkwrap</code>, <code>postshrinkwrap</code>: 由 <code>npm shrinkwrap</code> 命令运行。</li>
-</ul>
-<p>参考文档：<a href="https://docs.npmjs.com/misc/scripts">npm docs</a>.</p>
-<h3 id="config"><a aria-hidden="true" tabindex="-1" href="#config" class="anchor"><span class="icon icon-link"></span></a><code>config</code></h3>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>脚本是定义自动化开发相关任务的好方法，比如使用一些简单的构建过程或开发工具。 在 <code>scripts</code> 字段里定义的脚本，可以通过 <code>yarn run &#x3C;script></code> 命令来执行。 例如，上述 <code>build-project</code> 脚本可以通过 <code>yarn run build-project</code> 调用，并执行 <code>node build-project.js</code>。</p>
+        <p>有一些特殊的脚本名称。 如果定义了 <code>preinstall</code> 脚本，它会在包安装前被调用。 出于兼容性考虑，<code>install</code>、<code>postinstall</code> 和 <code>prepublish</code> 脚本会在包完成安装后被调用。</p>
+        <p><code>start</code> 脚本的默认值为 <code>node server.js</code>。</p>
+        <p>参考文档：<a href="https://docs.npmjs.com/files/package.json#default-values">npm docs</a></p>
+        <h3 id="特定的-scripts"><a aria-hidden="true" tabindex="-1" href="#特定的-scripts" class="anchor"><span class="icon icon-link"></span></a>特定的 <code>scripts</code></h3>
+        <p>对于以下脚本，<code>npm</code> 支持 <code>package.json</code> 文件的 <code>scripts</code> 默认命令字段：</p>
+        <ul>
+          <li><code>prepublish</code>: 在打包并发布包之前运行，以及在没有任何参数的本地 <code>npm</code> 安装之前运行。 （见下文）</li>
+          <li><code>prepare</code>: 在打包和发布包之前运行，在没有任何参数的本地 <code>npm install</code> 上运行，以及安装 git 依赖项时（见下文）。 这是在 <code>preublish</code> 之后运行，但是在 <code>preublishOnly</code> 之前运行。</li>
+          <li><code>prepublishOnly</code>: 在包准备和打包之前运行，仅限于npm发布。 （见下文。）</li>
+          <li><code>prepack</code>: 在打包 <code>tarball</code> 之前运行（在 <code>npm pack</code>，<code>npm publish</code>，以及安装 git 依赖项时）</li>
+          <li><code>postpack</code>: 在生成 <code>tarball</code> 之后运行并移动到其最终目标。</li>
+          <li><code>publish</code>, <code>postpublish</code>: 在包发布后运行。</li>
+          <li><code>preinstall</code>: 在安装软件包之前运行。</li>
+          <li><code>install</code>, <code>postinstall</code>: 安装包后运行。</li>
+          <li><code>preuninstall</code>, <code>uninstall</code>: 在卸载软件包之前运行。</li>
+          <li><code>postuninstall</code>: 在卸载软件包之后运行。</li>
+          <li><code>preversion</code>: 在改变包版本之前运行。</li>
+          <li><code>version</code>: 改变包版本后运行，但提交之前。</li>
+          <li><code>postversion</code>: 改变包版本后运行，然后提交。</li>
+          <li><code>pretest</code>, <code>test</code>, <code>posttest</code>: 由 <code>npm test</code> 命令运行。</li>
+          <li><code>prestop</code>, <code>stop</code>, <code>poststop</code>: 由 <code>npm stop</code> 命令运行。</li>
+          <li><code>prestart</code>, <code>start</code>, <code>poststart</code>: 由 <code>npm start</code> 命令运行。</li>
+          <li><code>prerestart</code>, <code>restart</code>, <code>postrestart</code>: 由 <code>npm restart</code> 命令运行。 注意：如果没有提供重启脚本，<code>npm restart</code> 将运行 <code>stop</code> 和<code>start</code> 脚本。</li>
+          <li><code>preshrinkwrap</code>, <code>shrinkwrap</code>, <code>postshrinkwrap</code>: 由 <code>npm shrinkwrap</code> 命令运行。</li>
+        </ul>
+        <p>参考文档：<a href="https://docs.npmjs.com/misc/scripts">npm docs</a>.</p>
+        <h3 id="config"><a aria-hidden="true" tabindex="-1" href="#config" class="anchor"><span class="icon icon-link"></span></a><code>config</code></h3>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"config"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"port"</span><span class="token operator">:</span> <span class="token string">"8080"</span>
 </span><span class="code-line line-number" line="4">  <span class="token punctuation">}</span>
@@ -393,12 +369,12 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>配置你的脚本的选项或参数。</p>
-<h2 id="依赖描述类字段"><a aria-hidden="true" tabindex="-1" href="#依赖描述类字段" class="anchor"><span class="icon icon-link"></span></a>依赖描述类字段</h2>
-<p>你的包很可能依赖其他包。你可以在你的 <code>package.json</code> 文件里指定那些依赖。</p>
-<h3 id="dependencies"><a aria-hidden="true" tabindex="-1" href="#dependencies" class="anchor"><span class="icon icon-link"></span></a><code>dependencies</code></h3>
-<p>这些是你的包的开发版和发布版都需要的依赖。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>配置你的脚本的选项或参数。</p>
+        <h2 id="依赖描述类字段"><a aria-hidden="true" tabindex="-1" href="#依赖描述类字段" class="anchor"><span class="icon icon-link"></span></a>依赖描述类字段</h2>
+        <p>你的包很可能依赖其他包。你可以在你的 <code>package.json</code> 文件里指定那些依赖。</p>
+        <h3 id="dependencies"><a aria-hidden="true" tabindex="-1" href="#dependencies" class="anchor"><span class="icon icon-link"></span></a><code>dependencies</code></h3>
+        <p>这些是你的包的开发版和发布版都需要的依赖。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"package-1"</span><span class="token operator">:</span> <span class="token string">"^3.1.4"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="4">    <span class="token property">"package-2"</span><span class="token operator">:</span> <span class="token string">"file:./path/to/dir"</span>
@@ -411,13 +387,12 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<blockquote>
-<p>你可以指定一个确切的版本、一个最小的版本 (比如 <code>>=</code>) 或者一个版本范围 (比如 <code>>= ... &#x3C;</code>)。<br>
-包也可以指向本地的一个目录文件夹。</p>
-</blockquote>
-<h3 id="devdependencies"><a aria-hidden="true" tabindex="-1" href="#devdependencies" class="anchor"><span class="icon icon-link"></span></a><code>devDependencies</code></h3>
-<p>这些是只在你的包开发期间需要，但是生产环境不会被安装的包。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <blockquote>
+          <p>你可以指定一个确切的版本、一个最小的版本 (比如 <code>>=</code>) 或者一个版本范围 (比如 <code>>= ... &#x3C;</code>)。<br>包也可以指向本地的一个目录文件夹。</p>
+        </blockquote>
+        <h3 id="devdependencies"><a aria-hidden="true" tabindex="-1" href="#devdependencies" class="anchor"><span class="icon icon-link"></span></a><code>devDependencies</code></h3>
+        <p>这些是只在你的包开发期间需要，但是生产环境不会被安装的包。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"package-2"</span><span class="token operator">:</span> <span class="token string">"^0.4.2"</span>
 </span><span class="code-line line-number" line="4">  <span class="token punctuation">}</span>
@@ -428,9 +403,9 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="peerdependencies"><a aria-hidden="true" tabindex="-1" href="#peerdependencies" class="anchor"><span class="icon icon-link"></span></a><code>peerDependencies</code></h3>
-<p>平行依赖允许你说明你的包和其他包版本的兼容性。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="peerdependencies"><a aria-hidden="true" tabindex="-1" href="#peerdependencies" class="anchor"><span class="icon icon-link"></span></a><code>peerDependencies</code></h3>
+        <p>平行依赖允许你说明你的包和其他包版本的兼容性。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"peerDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"package-3"</span><span class="token operator">:</span> <span class="token string">"^2.7.18"</span>
 </span><span class="code-line line-number" line="4">  <span class="token punctuation">}</span>
@@ -441,9 +416,9 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="peerdependenciesmeta"><a aria-hidden="true" tabindex="-1" href="#peerdependenciesmeta" class="anchor"><span class="icon icon-link"></span></a><code>peerDependenciesMeta</code></h3>
-<p>添加可选设置以消除丢失的对等依赖性警告，<a href="https://github.com/yarnpkg/yarn/pull/6671">#6671</a> 。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="peerdependenciesmeta"><a aria-hidden="true" tabindex="-1" href="#peerdependenciesmeta" class="anchor"><span class="icon icon-link"></span></a><code>peerDependenciesMeta</code></h3>
+        <p>添加可选设置以消除丢失的对等依赖性警告，<a href="https://github.com/yarnpkg/yarn/pull/6671">#6671</a> 。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"peerDependenciesMeta"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"node-sass"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="4">      <span class="token property">"optional"</span><span class="token operator">:</span> <span class="token boolean">true</span>
@@ -470,9 +445,9 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="optionaldependencies"><a aria-hidden="true" tabindex="-1" href="#optionaldependencies" class="anchor"><span class="icon icon-link"></span></a><code>optionalDependencies</code></h3>
-<p>可选依赖可以用于你的包，但不是必需的。如果可选包没有找到，安装还可以继续。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="optionaldependencies"><a aria-hidden="true" tabindex="-1" href="#optionaldependencies" class="anchor"><span class="icon icon-link"></span></a><code>optionalDependencies</code></h3>
+        <p>可选依赖可以用于你的包，但不是必需的。如果可选包没有找到，安装还可以继续。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"optionalDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"package-5"</span><span class="token operator">:</span> <span class="token string">"^1.6.1"</span>
 </span><span class="code-line line-number" line="4">  <span class="token punctuation">}</span>
@@ -483,9 +458,9 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="bundleddependencies"><a aria-hidden="true" tabindex="-1" href="#bundleddependencies" class="anchor"><span class="icon icon-link"></span></a><code>bundledDependencies</code></h3>
-<p>打包依赖是发布你的包时将会一起打包的一个包名数组。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="bundleddependencies"><a aria-hidden="true" tabindex="-1" href="#bundleddependencies" class="anchor"><span class="icon icon-link"></span></a><code>bundledDependencies</code></h3>
+        <p>打包依赖是发布你的包时将会一起打包的一个包名数组。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"bundledDependencies"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
 </span><span class="code-line line-number" line="3">    <span class="token string">"package-4"</span>
 </span><span class="code-line line-number" line="4">  <span class="token punctuation">]</span>
@@ -496,11 +471,11 @@ npm install [包名]
   ]
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="系统"><a aria-hidden="true" tabindex="-1" href="#系统" class="anchor"><span class="icon icon-link"></span></a>系统</h2>
-<p>你可以提供和你的包关联的系统级的信息，比如操作系统兼容性之类。</p>
-<h3 id="engines"><a aria-hidden="true" tabindex="-1" href="#engines" class="anchor"><span class="icon icon-link"></span></a><code>engines</code></h3>
-<p>指定使用你的包客户必须使用的版本，这将检查 <code>process.versions</code> 以及当前 <code>yarn</code> 版本。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h2 id="系统"><a aria-hidden="true" tabindex="-1" href="#系统" class="anchor"><span class="icon icon-link"></span></a>系统</h2>
+        <p>你可以提供和你的包关联的系统级的信息，比如操作系统兼容性之类。</p>
+        <h3 id="engines"><a aria-hidden="true" tabindex="-1" href="#engines" class="anchor"><span class="icon icon-link"></span></a><code>engines</code></h3>
+        <p>指定使用你的包客户必须使用的版本，这将检查 <code>process.versions</code> 以及当前 <code>yarn</code> 版本。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"engines"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"node"</span><span class="token operator">:</span> <span class="token string">"^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="4">    <span class="token property">"node"</span><span class="token operator">:</span> <span class="token string">">=4.4.7 &#x3C;7.0.0"</span><span class="token punctuation">,</span>
@@ -517,10 +492,10 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>此检查遵守正常的 <a href="http://semver.org/lang/zh-CN/">semver</a> 规则，但有一个例外。 它允许预发布版本匹配未明确指定预发布的 <a href="http://semver.org/lang/zh-CN/">semver</a>。 例如，<code>1.4.0-rc.0</code> 匹配 <code>>=1.3.0</code>，但它与典型的 <code>semver</code> 检查不匹配。</p>
-<h3 id="os"><a aria-hidden="true" tabindex="-1" href="#os" class="anchor"><span class="icon icon-link"></span></a><code>os</code></h3>
-<p>此选项指定你的包的操作系统兼容性，它会检查 <code>process.platform</code>。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>此检查遵守正常的 <a href="http://semver.org/lang/zh-CN/">semver</a> 规则，但有一个例外。 它允许预发布版本匹配未明确指定预发布的 <a href="http://semver.org/lang/zh-CN/">semver</a>。 例如，<code>1.4.0-rc.0</code> 匹配 <code>>=1.3.0</code>，但它与典型的 <code>semver</code> 检查不匹配。</p>
+        <h3 id="os"><a aria-hidden="true" tabindex="-1" href="#os" class="anchor"><span class="icon icon-link"></span></a><code>os</code></h3>
+        <p>此选项指定你的包的操作系统兼容性，它会检查 <code>process.platform</code>。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"os"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"darwin"</span><span class="token punctuation">,</span> <span class="token string">"linux"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"os"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"!win32"</span><span class="token punctuation">]</span>
 </span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
@@ -529,9 +504,9 @@ npm install [包名]
   &#x22;os&#x22;: [&#x22;!win32&#x22;]
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="cpu"><a aria-hidden="true" tabindex="-1" href="#cpu" class="anchor"><span class="icon icon-link"></span></a><code>cpu</code></h3>
-<p>使用这个选项指定你的包将只能在某些 CPU 体系架构上运行，这会检查 <code>process.arch</code>。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h3 id="cpu"><a aria-hidden="true" tabindex="-1" href="#cpu" class="anchor"><span class="icon icon-link"></span></a><code>cpu</code></h3>
+        <p>使用这个选项指定你的包将只能在某些 CPU 体系架构上运行，这会检查 <code>process.arch</code>。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"cpu"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"x64"</span><span class="token punctuation">,</span> <span class="token string">"ia32"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"cpu"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"!arm"</span><span class="token punctuation">,</span> <span class="token string">"!mips"</span><span class="token punctuation">]</span>
 </span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
@@ -540,19 +515,19 @@ npm install [包名]
   &#x22;cpu&#x22;: [&#x22;!arm&#x22;, &#x22;!mips&#x22;]
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="发布"><a aria-hidden="true" tabindex="-1" href="#发布" class="anchor"><span class="icon icon-link"></span></a>发布</h2>
-<h3 id="private"><a aria-hidden="true" tabindex="-1" href="#private" class="anchor"><span class="icon icon-link"></span></a><code>private</code></h3>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <h2 id="发布"><a aria-hidden="true" tabindex="-1" href="#发布" class="anchor"><span class="icon icon-link"></span></a>发布</h2>
+        <h3 id="private"><a aria-hidden="true" tabindex="-1" href="#private" class="anchor"><span class="icon icon-link"></span></a><code>private</code></h3>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"private"</span><span class="token operator">:</span> <span class="token boolean">true</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;private&#x22;: true
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>如果你不想你的包发布到包管理器(npm 或者 私有包管理)，设置为 <code>true</code>。</p>
-<h3 id="publishconfig"><a aria-hidden="true" tabindex="-1" href="#publishconfig" class="anchor"><span class="icon icon-link"></span></a><code>publishConfig</code></h3>
-<p>这些配置值将在你的包发布时使用。比如，你可以给包打标签。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>如果你不想你的包发布到包管理器(npm 或者 私有包管理)，设置为 <code>true</code>。</p>
+        <h3 id="publishconfig"><a aria-hidden="true" tabindex="-1" href="#publishconfig" class="anchor"><span class="icon icon-link"></span></a><code>publishConfig</code></h3>
+        <p>这些配置值将在你的包发布时使用。比如，你可以给包打标签。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"publishConfig"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"registry"</span><span class="token operator">:</span> <span class="token string">"https://registry.npm.taobao.org"</span>
 </span><span class="code-line line-number" line="4">  <span class="token punctuation">}</span>
@@ -563,21 +538,21 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>这是一组将在发布时使用的配置值。 如果要设置标记，注册表或访问权限，则特别方便，以便确保给定的包未标记为 <code>latest</code>，发布到全局公共 <code>registry</code> 或默认情况下，作用域模块(@scoped)是私有的。</p>
-<p>可以覆盖任何配置值，但只有 <code>tag</code>，<code>registry</code> 和 <code>access</code> 可能对于发布而言很重要，<a href="https://docs.npmjs.com/misc/config#config-settings">npm-config</a>。</p>
-<h2 id="yarn"><a aria-hidden="true" tabindex="-1" href="#yarn" class="anchor"><span class="icon icon-link"></span></a>Yarn</h2>
-<h3 id="flat"><a aria-hidden="true" tabindex="-1" href="#flat" class="anchor"><span class="icon icon-link"></span></a><code>flat</code></h3>
-<p>如果你的包只允许给定依赖的一个版本，你想强制和命令行上 <a href="#">yarn install --flat</a> 相同的行为，把这个值设为 <code>true</code>。</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>这是一组将在发布时使用的配置值。 如果要设置标记，注册表或访问权限，则特别方便，以便确保给定的包未标记为 <code>latest</code>，发布到全局公共 <code>registry</code> 或默认情况下，作用域模块(@scoped)是私有的。</p>
+        <p>可以覆盖任何配置值，但只有 <code>tag</code>，<code>registry</code> 和 <code>access</code> 可能对于发布而言很重要，<a href="https://docs.npmjs.com/misc/config#config-settings">npm-config</a>。</p>
+        <h2 id="yarn"><a aria-hidden="true" tabindex="-1" href="#yarn" class="anchor"><span class="icon icon-link"></span></a>Yarn</h2>
+        <h3 id="flat"><a aria-hidden="true" tabindex="-1" href="#flat" class="anchor"><span class="icon icon-link"></span></a><code>flat</code></h3>
+        <p>如果你的包只允许给定依赖的一个版本，你想强制和命令行上 <a href="#">yarn install --flat</a> 相同的行为，把这个值设为 <code>true</code>。</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"flat"</span><span class="token operator">:</span> <span class="token boolean">true</span>
 </span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;flat&#x22;: true
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>请注意，如果你的 <code>package.json</code> 包含 <code>"flat": true</code> 并且其它包依赖你的包 (比如你在构建一个库，而不是应用)， 其它那些包也需要在它们的 <code>package.json</code> 加上 <code>"flat": true</code>，或者在命令行上用 <code>yarn install --flat</code> 安装。</p>
-<h3 id="resolutions"><a aria-hidden="true" tabindex="-1" href="#resolutions" class="anchor"><span class="icon icon-link"></span></a><code>resolutions</code></h3>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+        <p>请注意，如果你的 <code>package.json</code> 包含 <code>"flat": true</code> 并且其它包依赖你的包 (比如你在构建一个库，而不是应用)， 其它那些包也需要在它们的 <code>package.json</code> 加上 <code>"flat": true</code>，或者在命令行上用 <code>yarn install --flat</code> 安装。</p>
+        <h3 id="resolutions"><a aria-hidden="true" tabindex="-1" href="#resolutions" class="anchor"><span class="icon icon-link"></span></a><code>resolutions</code></h3>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"resolutions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"transitive-package-1"</span><span class="token operator">:</span> <span class="token string">"0.0.29"</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="4">    <span class="token property">"transitive-package-2"</span><span class="token operator">:</span> <span class="token string">"file:./local-forks/transitive-package-2"</span><span class="token punctuation">,</span>
@@ -592,347 +567,116 @@ npm install [包名]
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>允许您覆盖特定嵌套依赖项的版本。 有关完整规范，请参见<a href="https://github.com/yarnpkg/rfcs/blob/master/implemented/0000-selective-versions-resolutions.md">选择性版本解析 RFC</a>。</p>
-<p>注意，<code>yarn install --flat</code> 命令将会自动在 <code>package.json</code> 文件里加入 <code>resolutions</code> 字段。</p>
-<h2 id="contributors-1"><a aria-hidden="true" tabindex="-1" href="#contributors-1" class="anchor"><span class="icon icon-link"></span></a>Contributors</h2>
-<p>As always, thanks to our amazing contributors!</p>
-<a href="https://github.com/jaywcjlove/package.json/graphs/contributors">
-  <img src="https://jaywcjlove.github.io/package.json/CONTRIBUTORS.svg">
-</a>
-<p>Made with <a href="https://github.com/jaywcjlove/github-action-contributors">action-contributors</a>.</p>
-<h2 id="license-1"><a aria-hidden="true" tabindex="-1" href="#license-1" class="anchor"><span class="icon icon-link"></span></a>License</h2>
-<p>Licensed under the MIT License.</p>
-<!--idoc:config:
-editButton: 
-  label: Edit this page on GitHub
-  url: https://github.com/jaywcjlove/package.json/blob/master/
-footer: |
-  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
-  Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v{{idocVersion}}
--->
-    
-
-
-
-<section class="article-footer">
-  <a href="https://github.com/jaywcjlove/package.json/blob/master/README.md" class="edit-button" target="_blank" rel="noopener noreferrer">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-    </svg>
-    <span>Edit this page on GitHub</span>
-  </a>
-  
-  <span class="atime">2022/04/30</span>
-  
-</section>
-
-  </markdown-style>
-  
-<nav class="tocs">
-  <aside class="inner toc">
-    <ol class="tocs-list">
-    
-      <li>
-        <a href="#重要字段" class="tocs-link">重要字段</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#name" class="tocs-link">name</a>
-                
-              </li>
-            
-              <li>
-                <a href="#version" class="tocs-link">version</a>
-                
-              </li>
-            
+        <p>允许您覆盖特定嵌套依赖项的版本。 有关完整规范，请参见<a href="https://github.com/yarnpkg/rfcs/blob/master/implemented/0000-selective-versions-resolutions.md">选择性版本解析 RFC</a>。</p>
+        <p>注意，<code>yarn install --flat</code> 命令将会自动在 <code>package.json</code> 文件里加入 <code>resolutions</code> 字段。</p>
+        <h2 id="contributors-1"><a aria-hidden="true" tabindex="-1" href="#contributors-1" class="anchor"><span class="icon icon-link"></span></a>Contributors</h2>
+        <p>As always, thanks to our amazing contributors!</p><a href="https://github.com/jaywcjlove/package.json/graphs/contributors"><img src="https://jaywcjlove.github.io/package.json/CONTRIBUTORS.svg"></a>
+        <p>Made with <a href="https://github.com/jaywcjlove/github-action-contributors">action-contributors</a>.</p>
+        <h2 id="license-1"><a aria-hidden="true" tabindex="-1" href="#license-1" class="anchor"><span class="icon icon-link"></span></a>License</h2>
+        <p>Licensed under the MIT License.</p><!--idoc:config:
+        editButton: 
+          label: Edit this page on GitHub
+          url: https://github.com/jaywcjlove/package.json/blob/master/
+        footer: |
+          Released under the MIT License. Copyright © 2022 Kenny Wong<br />
+          Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v{{idocVersion}}
+        -->
+        <section class="article-footer"><a href="https://github.com/jaywcjlove/package.json/blob/master/README.md" class="edit-button" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+<span>Edit this page on GitHub</span>
+</a><span class="atime">2022/09/28</span></section>
+      </markdown-style>
+      <nav class="tocs">
+        <aside class="inner toc">
+          <ol class="tocs-list">
+            <li><a href="#重要字段" class="tocs-link">重要字段</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#name" class="tocs-link">name</a></li>
+                <li><a href="#version" class="tocs-link">version</a></li>
+              </ol>
+            </li>
+            <li><a href="#信息类字段" class="tocs-link">信息类字段</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#description" class="tocs-link">description</a></li>
+                <li><a href="#keywords" class="tocs-link">keywords</a></li>
+                <li><a href="#license" class="tocs-link">license</a></li>
+              </ol>
+            </li>
+            <li><a href="#链接类字段" class="tocs-link">链接类字段</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#homepage" class="tocs-link">homepage</a></li>
+                <li><a href="#bugs" class="tocs-link">bugs</a></li>
+                <li><a href="#repository" class="tocs-link">repository</a></li>
+              </ol>
+            </li>
+            <li><a href="#项目维护类字段" class="tocs-link">项目维护类字段</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#author" class="tocs-link">author</a></li>
+                <li><a href="#contributors" class="tocs-link">contributors</a></li>
+              </ol>
+            </li>
+            <li><a href="#文件类信息" class="tocs-link">文件类信息</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#files" class="tocs-link">files</a></li>
+                <li><a href="#main" class="tocs-link">main</a></li>
+                <li><a href="#bin" class="tocs-link">bin</a></li>
+                <li><a href="#man" class="tocs-link">man</a></li>
+                <li><a href="#directories" class="tocs-link">directories</a></li>
+                <li><a href="#types" class="tocs-link">types</a></li>
+              </ol>
+            </li>
+            <li><a href="#打包包字段" class="tocs-link">打包包字段</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#module" class="tocs-link">module</a></li>
+                <li><a href="#browser" class="tocs-link">browser</a></li>
+                <li><a href="#esnext" class="tocs-link">esnext</a></li>
+              </ol>
+            </li>
+            <li><a href="#任务类字段" class="tocs-link">任务类字段</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#scripts" class="tocs-link">scripts</a></li>
+                <li><a href="#特定的-scripts" class="tocs-link">特定的 scripts</a></li>
+                <li><a href="#config" class="tocs-link">config</a></li>
+              </ol>
+            </li>
+            <li><a href="#依赖描述类字段" class="tocs-link">依赖描述类字段</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#dependencies" class="tocs-link">dependencies</a></li>
+                <li><a href="#devdependencies" class="tocs-link">devDependencies</a></li>
+                <li><a href="#peerdependencies" class="tocs-link">peerDependencies</a></li>
+                <li><a href="#peerdependenciesmeta" class="tocs-link">peerDependenciesMeta</a></li>
+                <li><a href="#optionaldependencies" class="tocs-link">optionalDependencies</a></li>
+                <li><a href="#bundleddependencies" class="tocs-link">bundledDependencies</a></li>
+              </ol>
+            </li>
+            <li><a href="#系统" class="tocs-link">系统</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#engines" class="tocs-link">engines</a></li>
+                <li><a href="#os" class="tocs-link">os</a></li>
+                <li><a href="#cpu" class="tocs-link">cpu</a></li>
+              </ol>
+            </li>
+            <li><a href="#发布" class="tocs-link">发布</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#private" class="tocs-link">private</a></li>
+                <li><a href="#publishconfig" class="tocs-link">publishConfig</a></li>
+              </ol>
+            </li>
+            <li><a href="#yarn" class="tocs-link">Yarn</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#flat" class="tocs-link">flat</a></li>
+                <li><a href="#resolutions" class="tocs-link">resolutions</a></li>
+              </ol>
+            </li>
+            <li><a href="#contributors-1" class="tocs-link">Contributors</a></li>
+            <li><a href="#license-1" class="tocs-link">License</a></li>
           </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#信息类字段" class="tocs-link">信息类字段</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#description" class="tocs-link">description</a>
-                
-              </li>
-            
-              <li>
-                <a href="#keywords" class="tocs-link">keywords</a>
-                
-              </li>
-            
-              <li>
-                <a href="#license" class="tocs-link">license</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#链接类字段" class="tocs-link">链接类字段</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#homepage" class="tocs-link">homepage</a>
-                
-              </li>
-            
-              <li>
-                <a href="#bugs" class="tocs-link">bugs</a>
-                
-              </li>
-            
-              <li>
-                <a href="#repository" class="tocs-link">repository</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#项目维护类字段" class="tocs-link">项目维护类字段</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#author" class="tocs-link">author</a>
-                
-              </li>
-            
-              <li>
-                <a href="#contributors" class="tocs-link">contributors</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#文件类信息" class="tocs-link">文件类信息</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#files" class="tocs-link">files</a>
-                
-              </li>
-            
-              <li>
-                <a href="#main" class="tocs-link">main</a>
-                
-              </li>
-            
-              <li>
-                <a href="#bin" class="tocs-link">bin</a>
-                
-              </li>
-            
-              <li>
-                <a href="#man" class="tocs-link">man</a>
-                
-              </li>
-            
-              <li>
-                <a href="#directories" class="tocs-link">directories</a>
-                
-              </li>
-            
-              <li>
-                <a href="#types" class="tocs-link">types</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#打包包字段" class="tocs-link">打包包字段</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#module" class="tocs-link">module</a>
-                
-              </li>
-            
-              <li>
-                <a href="#browser" class="tocs-link">browser</a>
-                
-              </li>
-            
-              <li>
-                <a href="#esnext" class="tocs-link">esnext</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#任务类字段" class="tocs-link">任务类字段</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#scripts" class="tocs-link">scripts</a>
-                
-              </li>
-            
-              <li>
-                <a href="#特定的-scripts" class="tocs-link">特定的 scripts</a>
-                
-              </li>
-            
-              <li>
-                <a href="#config" class="tocs-link">config</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#依赖描述类字段" class="tocs-link">依赖描述类字段</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#dependencies" class="tocs-link">dependencies</a>
-                
-              </li>
-            
-              <li>
-                <a href="#devdependencies" class="tocs-link">devDependencies</a>
-                
-              </li>
-            
-              <li>
-                <a href="#peerdependencies" class="tocs-link">peerDependencies</a>
-                
-              </li>
-            
-              <li>
-                <a href="#peerdependenciesmeta" class="tocs-link">peerDependenciesMeta</a>
-                
-              </li>
-            
-              <li>
-                <a href="#optionaldependencies" class="tocs-link">optionalDependencies</a>
-                
-              </li>
-            
-              <li>
-                <a href="#bundleddependencies" class="tocs-link">bundledDependencies</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#系统" class="tocs-link">系统</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#engines" class="tocs-link">engines</a>
-                
-              </li>
-            
-              <li>
-                <a href="#os" class="tocs-link">os</a>
-                
-              </li>
-            
-              <li>
-                <a href="#cpu" class="tocs-link">cpu</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#发布" class="tocs-link">发布</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#private" class="tocs-link">private</a>
-                
-              </li>
-            
-              <li>
-                <a href="#publishconfig" class="tocs-link">publishConfig</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#yarn" class="tocs-link">Yarn</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#flat" class="tocs-link">flat</a>
-                
-              </li>
-            
-              <li>
-                <a href="#resolutions" class="tocs-link">resolutions</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#contributors-1" class="tocs-link">Contributors</a>
-        
-      </li>
-    
-      <li>
-        <a href="#license-1" class="tocs-link">License</a>
-        
-      </li>
-    
-    </ol>
-  </aside>
-</nav>
-
-</div>
-
-<script src="js/demo-preview.js?v=1.17.4"></script>
-
-
-<div class="footer warpper">
-  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
-Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.17.4
-
-</div>
-
-
-<script src="js/tocbot.js?v=1.17.4"></script>
-
-</body>
+        </aside>
+      </nav>
+    </div>
+    <script src="js/demo-preview.js?v=1.21.11"></script>
+    <div class="footer warpper">Released under the MIT License. Copyright © 2022 Kenny Wong<br>Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.21.11</div>
+    <script src="js/tocbot.js?v=1.21.11"></script>
+  </body>
 </html>
