@@ -47,6 +47,7 @@ PACKAGE.JSON
   - [`peerDependenciesMeta`](#peerDependenciesMeta)
   - [`optionalDependencies`](#optionaldependencies)
   - [`bundledDependencies`](#bundleddependencies)
+  - [`overrides`](#overrides)
 - [系统](#系统)
   - [`engines`](#engines)
   - [`os`](#os)
@@ -489,6 +490,89 @@ The repository is the location where the actual code for your package lives.
   "bundledDependencies": [
     "package-4"
   ]
+}
+```
+
+### overrides
+
+如果您需要对依赖项的依赖项进行特定更改，例如用已知的安全问题替换依赖项的版本，用 fork 替换现有的依赖项，或者确保在所有地方都使用相同版本的包，那么 您可以添加 `override`。
+
+为了确保包 foo 始终安装为 1.0.0 版本，无论您的依赖项依赖于哪个版本：
+
+```json
+{
+  "overrides": {
+    "foo": "1.0.0"
+  }
+}
+```
+
+以上是简写符号，完整的对象形式可用于允许覆盖包本身以及包的子项。 这将导致 foo 始终为 1.0.0，同时也使 bar 在超出 foo 的任何深度也为 1.0.0：
+
+```json
+{
+  "overrides": {
+    "foo": {
+      ".": "1.0.0",
+      "bar": "1.0.0"
+    }
+  }
+}
+```
+
+仅当 foo 是包 bar 的子项（或孙子、曾孙等）时才将 foo 覆盖为 1.0.0：
+
+```json
+{
+  "overrides": {
+    "bar": {
+      "foo": "1.0.0"
+    }
+  }
+}
+```
+
+键可以嵌套到任意长度。 仅当 foo 是 bar 的子项且仅当 bar 是 baz 的子项时才覆盖 foo：
+
+```json
+{
+  "overrides": {
+    "baz": {
+      "bar": {
+        "foo": "1.0.0"
+      }
+    }
+  }
+}
+```
+
+`overrides` 的键还可以包括版本或版本范围。 将 foo 覆盖为 1.0.0，但仅当它是 bar@2.0.0 的子代时：
+
+```json
+{
+  "overrides": {
+    "bar@2.0.0": {
+      "foo": "1.0.0"
+    }
+  }
+}
+```
+
+```js
+{
+  "dependencies": {
+    "foo": "^1.0.0"
+  },
+  "overrides": {
+    // 不好，会抛出 EOVERRIDE 错误
+    // "foo": "^2.0.0"
+    // 很好，规格匹配，因此允许覆盖
+    // "foo": "^1.0.0"
+    // 最好，覆盖被定义为对依赖项的引用
+    "foo": "$foo",
+    // 引用的包不需要匹配覆盖的包
+    "bar": "$foo"
+  }
 }
 ```
 
