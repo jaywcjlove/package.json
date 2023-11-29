@@ -3,6 +3,9 @@ PACKAGE.JSON
 ===
 <!--idoc:ignore:end-->
 
+
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
+
 文档复制 [yarnpkg](https://classic.yarnpkg.com/en/docs/package-json) 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 [npm documentation](https://docs.npmjs.com/files/package.json), [std-pkg](https://github.com/jamiebuilds/std-pkg), [clean-publish](https://github.com/shashkovdanil/clean-publish), [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), [rc](https://github.com/dominictarr/rc)。
 
 > 🚧 注意：如果你直接克隆项目，项目名称为 `package.json`，会导致你其它 `node.js` 项目可能有问题。
