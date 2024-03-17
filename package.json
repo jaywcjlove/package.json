@@ -22,6 +22,6 @@
     "npm-module"
   ],
   "dependencies": {
-    "idoc": "^1.17.4"
+    "idoc": "^1"
   }
 }
