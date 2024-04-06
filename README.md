@@ -8,6 +8,7 @@ PACKAGE.JSON
 
 文档复制 [yarnpkg](https://classic.yarnpkg.com/en/docs/package-json) 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 [npm documentation](https://docs.npmjs.com/files/package.json), [std-pkg](https://github.com/jamiebuilds/std-pkg), [clean-publish](https://github.com/shashkovdanil/clean-publish), [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), [rc](https://github.com/dominictarr/rc)。
 
+> [!WARNING]
 > 🚧 注意：如果你直接克隆项目，项目名称为 `package.json`，会导致你其它 `node.js` 项目可能有问题。
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
