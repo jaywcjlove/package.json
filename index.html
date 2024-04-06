@@ -7,15 +7,15 @@
     <title>PACKAGE.JSON PACKAGE.JSON</title>
     <meta name="description" content="文档复制 yarnpkg 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 npm documentation, std-pkg, clean-publish, cosmiconfig, rc。">
     <meta name="keywords" content="nodejs,npm,yarn,npm-package,npm-module">
-    <link rel="stylesheet" type="text/css" href="css/main.css?v=1.29.0">
-    <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1.29.0">
-    <link rel="stylesheet" type="text/css" href="css/media.css?v=1.29.0">
-    <link rel="stylesheet" type="text/css" href="css/sidebar.css?v=1.29.0">
-    <link rel="stylesheet" type="text/css" href="css/copy.css?v=1.29.0">
-    <link rel="stylesheet" type="text/css" href="css/demo-preview.css?v=1.29.0">
-    <script src="js/copy.js?v=1.29.0"></script>
-    <script src="js/dark-mode.js?v=1.29.0"></script>
-    <script src="js/markdown-style.js?v=1.29.0"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v=1.31.0">
+    <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1.31.0">
+    <link rel="stylesheet" type="text/css" href="css/media.css?v=1.31.0">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css?v=1.31.0">
+    <link rel="stylesheet" type="text/css" href="css/copy.css?v=1.31.0">
+    <link rel="stylesheet" type="text/css" href="css/demo-preview.css?v=1.31.0">
+    <script src="js/copy.js?v=1.31.0"></script>
+    <script src="js/dark-mode.js?v=1.31.0"></script>
+    <script src="js/markdown-style.js?v=1.31.0"></script>
   </head>
   <body id="idoctotop"><a href="#idoctotop" class="gototop">top</a>
     <header class="header">
@@ -36,9 +36,14 @@
       <markdown-style theme-auto-switch-disabled="">
         <p><a href="https://jaywcjlove.github.io/#/sponsor"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee" alt="Buy me a coffee"></a></p>
         <p>文档复制 <a href="https://classic.yarnpkg.com/en/docs/package-json">yarnpkg</a> 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 <a href="https://docs.npmjs.com/files/package.json">npm documentation</a>, <a href="https://github.com/jamiebuilds/std-pkg">std-pkg</a>, <a href="https://github.com/shashkovdanil/clean-publish">clean-publish</a>, <a href="https://github.com/davidtheclark/cosmiconfig">cosmiconfig</a>, <a href="https://github.com/dominictarr/rc">rc</a>。</p>
-        <blockquote style="border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;">
+        <div class="markdown-alert markdown-alert-warning" dir="auto">
+          <p class="markdown-alert-title" dir="auto">
+            <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+              <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+            </svg>WARNING
+          </p>
           <p>🚧 注意：如果你直接克隆项目，项目名称为 <code>package.json</code>，会导致你其它 <code>node.js</code> 项目可能有问题。</p>
-        </blockquote><!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
+        </div><!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
         <h2 id="重要字段"><a aria-hidden="true" tabindex="-1" href="#重要字段" class="anchor"><span class="icon icon-link"></span></a>重要字段</h2>
         <p>你的 <code>package.json</code> 中最重要的两个字段是 <code>name</code> 和 <code>version</code>，如果没有它们，您的包将无法安装。 <code>name</code> 和<code>version</code> 字段一起用于创建唯一ID。</p>
         <h3 id="name"><a aria-hidden="true" tabindex="-1" href="#name" class="anchor"><span class="icon icon-link"></span></a><code>name</code></h3>
@@ -696,7 +701,7 @@ npm install [包名]
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2024/03/17</span></section>
+</a><span class="atime">2024/04/06</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">
@@ -787,13 +792,13 @@ npm install [包名]
         </aside>
       </nav>
     </div>
-    <script src="js/demo-preview.js?v=1.29.0"></script>
+    <script src="js/demo-preview.js?v=1.31.0"></script>
     <div class="footer warpper">
       <a href="https://wangchujiang.com/#/app" target="_blank">App</a> •
       <a href="https://wangchujiang.com/#/projects" target="_blank">Projects</a> •
       <a href="https://wangchujiang.com/#/sponsor" target="_blank">Sponsor</a> •
-      <a href="https://wangchujiang.com/#/app" target="_blank">More Apps</a><br><br>Released under the MIT License. Copyright © 2024 <a href="https://wangchujiang.com/#/about" target="_blank">Kenny Wong</a><br>Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.29.0
+      <a href="https://wangchujiang.com/#/app" target="_blank">More Apps</a><br><br>Released under the MIT License. Copyright © 2024 <a href="https://wangchujiang.com/#/about" target="_blank">Kenny Wong</a><br>Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.31.0
     </div>
-    <script src="js/tocbot.js?v=1.29.0"></script>
+    <script src="js/tocbot.js?v=1.31.0"></script>
   </body>
 </html>
