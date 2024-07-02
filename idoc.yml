@@ -1,20 +1,18 @@
 site: "PACKAGE.JSON"
-logo: "./favicon.svg"
-favicon: "./favicon.svg"
 
 homepage: https://wangchujiang.com/package.json/
 
 menus:
-  Home: index.html
-  Sponsor: 
+  首页: index.html
+  捐赠: 
     url: https://wangchujiang.com/#/sponsor
     target: __blank
-  Apps: 
+  应用: 
     url: https://wangchujiang.com/#/app
     target: __blank
 
 editButton: 
-  label: Edit this page on GitHub
+  label: 在 GitHub 上编辑此页
   url: https://github.com/jaywcjlove/package.json/blob/master/
 footer: |
   <a href="https://wangchujiang.com/#/app" target="_blank">App</a> • 
