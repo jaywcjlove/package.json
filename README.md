@@ -6,7 +6,7 @@ PACKAGE.JSON
 
 [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
 
-文档复制 [yarnpkg](https://classic.yarnpkg.com/en/docs/package-json) 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 [npm documentation](https://docs.npmjs.com/files/package.json), [std-pkg](https://github.com/jamiebuilds/std-pkg), [clean-publish](https://github.com/shashkovdanil/clean-publish), [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), [rc](https://github.com/dominictarr/rc)。
+文档主要来源于 [yarnpkg](https://classic.yarnpkg.com/en/docs/package-json) 和 [npm](https://docs.npmjs.com/cli/configuring-npm/package-json) 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 [npm documentation](https://docs.npmjs.com/files/package.json), [std-pkg](https://github.com/jamiebuilds/std-pkg), [clean-publish](https://github.com/shashkovdanil/clean-publish), [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), [rc](https://github.com/dominictarr/rc)。
 
 > [!WARNING]
 > 🚧 注意：如果你直接克隆项目，项目名称为 `package.json`，会导致你其它 `node.js` 项目可能有问题。
@@ -190,7 +190,7 @@ Description 是帮助使用者了解包的功能的字符串，包管理器也�
 
 ### `repository`
 
-是代码托管的位置。
+是代码托管的位置，`repository` 是包的实际代码所在的位置。
 
 ```json
 {
@@ -202,7 +202,17 @@ Description 是帮助使用者了解包的功能的字符串，包管理器也�
 }
 ```
 
-The repository is the location where the actual code for your package lives.
+如果软件包的 package.json 不在根目录下（例如，如果它是 monorepo 的一部分），可以指定它所在的目录：
+
+```json
+{
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npm/cli.git",
+    "directory": "workspaces/libnpmpublish"
+  }
+}
+```
 
 ## 项目维护类字段
 
@@ -421,7 +431,26 @@ The repository is the location where the actual code for your package lives.
 {
   "dependencies": {
     "package-1": "^3.1.4",
-    "package-2": "file:./path/to/dir"
+    "package-2": "file:./path/to/dir",
+    "express": "expressjs/express",
+    "mocha": "mochajs/mocha#4727d357ea",
+    "module": "user/repo#feature/branch",
+    "cliz": "git+ssh://git@github.com:npm/cli.git#v1.0.27",
+    "clis": "git+ssh://git@github.com:npm/cli#semver:^5.0",
+    "clin": "git+https://isaacs@github.com/npm/cli.git",
+    "clig": "git://github.com/npm/cli.git#v1.0.27",
+    "foo": "1.0.0 - 2.9999.9999",
+    "bar": ">=1.0.2 <2.1.2",
+    "baz": ">1.0.2 <=2.3.4",
+    "boo": "2.0.1",
+    "qux": "<1.0.0 || >=2.3.1 <2.4.5 || >=2.5.2 <3.0.0",
+    "asd": "http://asdf.com/asdf.tar.gz",
+    "til": "~1.2",
+    "elf": "~1.2.3",
+    "two": "2.x",
+    "thr": "3.3.x",
+    "lat": "latest",
+    "dyl": "file:../dyl"
   }
 }
 ```
