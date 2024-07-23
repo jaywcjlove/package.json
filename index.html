@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PACKAGE.JSON PACKAGE.JSON</title>
-    <meta name="description" content="文档复制 yarnpkg 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 npm documentation, std-pkg, clean-publish, cosmiconfig, rc。">
+    <meta name="description" content="文档主要来源于 yarnpkg 和 npm 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 npm documentation, std-pkg, clean-publish, cosmiconfig, rc">
     <meta name="keywords" content="nodejs,npm,yarn,npm-package,npm-module">
     <link rel="stylesheet" type="text/css" href="css/main.css?v=1.31.0">
     <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1.31.0">
@@ -37,7 +37,7 @@
     <div class="warpper-content warpper">
       <markdown-style theme-auto-switch-disabled="">
         <p><a href="https://jaywcjlove.github.io/#/sponsor"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee" alt="Buy me a coffee"></a></p>
-        <p>文档复制 <a href="https://classic.yarnpkg.com/en/docs/package-json">yarnpkg</a> 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 <a href="https://docs.npmjs.com/files/package.json">npm documentation</a>, <a href="https://github.com/jamiebuilds/std-pkg">std-pkg</a>, <a href="https://github.com/shashkovdanil/clean-publish">clean-publish</a>, <a href="https://github.com/davidtheclark/cosmiconfig">cosmiconfig</a>, <a href="https://github.com/dominictarr/rc">rc</a>。</p>
+        <p>文档主要来源于 <a href="https://classic.yarnpkg.com/en/docs/package-json">yarnpkg</a> 和 <a href="https://docs.npmjs.com/cli/configuring-npm/package-json">npm</a> 官方文档，并不是完全复制，增加了一些内容和一些描述，作为笔记存储。你也可以参考 <a href="https://docs.npmjs.com/files/package.json">npm documentation</a>, <a href="https://github.com/jamiebuilds/std-pkg">std-pkg</a>, <a href="https://github.com/shashkovdanil/clean-publish">clean-publish</a>, <a href="https://github.com/davidtheclark/cosmiconfig">cosmiconfig</a>, <a href="https://github.com/dominictarr/rc">rc</a>。</p>
         <div class="markdown-alert markdown-alert-warning" dir="auto">
           <p class="markdown-alert-title" dir="auto">
             <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
@@ -156,7 +156,7 @@ npm install [包名]
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="repository"><a aria-hidden="true" tabindex="-1" href="#repository" class="anchor"><span class="icon icon-link"></span></a><code>repository</code></h3>
-        <p>是代码托管的位置。</p>
+        <p>是代码托管的位置，<code>repository</code> 是包的实际代码所在的位置。</p>
         <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"repository"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"git"</span><span class="token punctuation">,</span> <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"https://github.com/user/repo.git"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="3">  <span class="token property">"repository"</span><span class="token operator">:</span> <span class="token string">"github:user/repo"</span><span class="token punctuation">,</span>
@@ -172,7 +172,22 @@ npm install [包名]
   &#x22;repository&#x22;: &#x22;gist:a1b2c3d4e5f&#x22;
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-        <p>The repository is the location where the actual code for your package lives.</p>
+        <p>如果软件包的 package.json 不在根目录下（例如，如果它是 monorepo 的一部分），可以指定它所在的目录：</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"repository"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"git"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"git+https://github.com/npm/cli.git"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token property">"directory"</span><span class="token operator">:</span> <span class="token string">"workspaces/libnpmpublish"</span>
+</span><span class="code-line line-number" line="6">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">}</span>
+</span></code><input type="hidden" value="{
+  &#x22;repository&#x22;: {
+    &#x22;type&#x22;: &#x22;git&#x22;,
+    &#x22;url&#x22;: &#x22;git+https://github.com/npm/cli.git&#x22;,
+    &#x22;directory&#x22;: &#x22;workspaces/libnpmpublish&#x22;
+  }
+}
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="项目维护类字段"><a aria-hidden="true" tabindex="-1" href="#项目维护类字段" class="anchor"><span class="icon icon-link"></span></a>项目维护类字段</h2>
         <p>项目的维护者。</p>
         <h3 id="author"><a aria-hidden="true" tabindex="-1" href="#author" class="anchor"><span class="icon icon-link"></span></a><code>author</code></h3>
@@ -387,13 +402,51 @@ npm install [包名]
         <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="2">  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">    <span class="token property">"package-1"</span><span class="token operator">:</span> <span class="token string">"^3.1.4"</span><span class="token punctuation">,</span>
-</span><span class="code-line line-number" line="4">    <span class="token property">"package-2"</span><span class="token operator">:</span> <span class="token string">"file:./path/to/dir"</span>
-</span><span class="code-line line-number" line="5">  <span class="token punctuation">}</span>
-</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"package-2"</span><span class="token operator">:</span> <span class="token string">"file:./path/to/dir"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token property">"express"</span><span class="token operator">:</span> <span class="token string">"expressjs/express"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"mocha"</span><span class="token operator">:</span> <span class="token string">"mochajs/mocha#4727d357ea"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"module"</span><span class="token operator">:</span> <span class="token string">"user/repo#feature/branch"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">    <span class="token property">"cliz"</span><span class="token operator">:</span> <span class="token string">"git+ssh://git@github.com:npm/cli.git#v1.0.27"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="9">    <span class="token property">"clis"</span><span class="token operator">:</span> <span class="token string">"git+ssh://git@github.com:npm/cli#semver:^5.0"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="10">    <span class="token property">"clin"</span><span class="token operator">:</span> <span class="token string">"git+https://isaacs@github.com/npm/cli.git"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="11">    <span class="token property">"clig"</span><span class="token operator">:</span> <span class="token string">"git://github.com/npm/cli.git#v1.0.27"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="12">    <span class="token property">"foo"</span><span class="token operator">:</span> <span class="token string">"1.0.0 - 2.9999.9999"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="13">    <span class="token property">"bar"</span><span class="token operator">:</span> <span class="token string">">=1.0.2 &#x3C;2.1.2"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="14">    <span class="token property">"baz"</span><span class="token operator">:</span> <span class="token string">">1.0.2 &#x3C;=2.3.4"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="15">    <span class="token property">"boo"</span><span class="token operator">:</span> <span class="token string">"2.0.1"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="16">    <span class="token property">"qux"</span><span class="token operator">:</span> <span class="token string">"&#x3C;1.0.0 || >=2.3.1 &#x3C;2.4.5 || >=2.5.2 &#x3C;3.0.0"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="17">    <span class="token property">"asd"</span><span class="token operator">:</span> <span class="token string">"http://asdf.com/asdf.tar.gz"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="18">    <span class="token property">"til"</span><span class="token operator">:</span> <span class="token string">"~1.2"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="19">    <span class="token property">"elf"</span><span class="token operator">:</span> <span class="token string">"~1.2.3"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="20">    <span class="token property">"two"</span><span class="token operator">:</span> <span class="token string">"2.x"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="21">    <span class="token property">"thr"</span><span class="token operator">:</span> <span class="token string">"3.3.x"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="22">    <span class="token property">"lat"</span><span class="token operator">:</span> <span class="token string">"latest"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="23">    <span class="token property">"dyl"</span><span class="token operator">:</span> <span class="token string">"file:../dyl"</span>
+</span><span class="code-line line-number" line="24">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="25"><span class="token punctuation">}</span>
 </span></code><input type="hidden" value="{
   &#x22;dependencies&#x22;: {
     &#x22;package-1&#x22;: &#x22;^3.1.4&#x22;,
-    &#x22;package-2&#x22;: &#x22;file:./path/to/dir&#x22;
+    &#x22;package-2&#x22;: &#x22;file:./path/to/dir&#x22;,
+    &#x22;express&#x22;: &#x22;expressjs/express&#x22;,
+    &#x22;mocha&#x22;: &#x22;mochajs/mocha#4727d357ea&#x22;,
+    &#x22;module&#x22;: &#x22;user/repo#feature/branch&#x22;,
+    &#x22;cliz&#x22;: &#x22;git+ssh://git@github.com:npm/cli.git#v1.0.27&#x22;,
+    &#x22;clis&#x22;: &#x22;git+ssh://git@github.com:npm/cli#semver:^5.0&#x22;,
+    &#x22;clin&#x22;: &#x22;git+https://isaacs@github.com/npm/cli.git&#x22;,
+    &#x22;clig&#x22;: &#x22;git://github.com/npm/cli.git#v1.0.27&#x22;,
+    &#x22;foo&#x22;: &#x22;1.0.0 - 2.9999.9999&#x22;,
+    &#x22;bar&#x22;: &#x22;>=1.0.2 <2.1.2&#x22;,
+    &#x22;baz&#x22;: &#x22;>1.0.2 <=2.3.4&#x22;,
+    &#x22;boo&#x22;: &#x22;2.0.1&#x22;,
+    &#x22;qux&#x22;: &#x22;<1.0.0 || >=2.3.1 <2.4.5 || >=2.5.2 <3.0.0&#x22;,
+    &#x22;asd&#x22;: &#x22;http://asdf.com/asdf.tar.gz&#x22;,
+    &#x22;til&#x22;: &#x22;~1.2&#x22;,
+    &#x22;elf&#x22;: &#x22;~1.2.3&#x22;,
+    &#x22;two&#x22;: &#x22;2.x&#x22;,
+    &#x22;thr&#x22;: &#x22;3.3.x&#x22;,
+    &#x22;lat&#x22;: &#x22;latest&#x22;,
+    &#x22;dyl&#x22;: &#x22;file:../dyl&#x22;
   }
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
@@ -703,7 +756,7 @@ npm install [包名]
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>在 GitHub 上编辑此页</span>
-</a><span class="atime">2024/07/02</span></section>
+</a><span class="atime">2024/07/23</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">
